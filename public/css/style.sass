@@ -7,18 +7,29 @@
   * light grey - btn : #88a1a5
   */
 
+/**
+  * 1. MAIN
+  * 2. BLOCKS
+  *   2.1. Header
+  *   2.2. Sidebar
+  *   2.3. Breadcrumb
+  * 3. ELEMENTS
+  *   3.1. Buttons
+  **/
+
 $color1: #08b6d1
 $color2: #444
 $color3: #a1b62b
 $color4: #e57418
 $color5: #88a1a5
 
-/* --- 1. GENERAL --- */
+/* --- 1. MAIN --- */
 
 body
-  background-color: $color2
   font-family: 'Roboto', sans-serif
   font-weight: 400
+  font-size: 14px
+  height: 100%
 
 h1
   font-size: 20px
@@ -52,301 +63,90 @@ a
     color: $color1
     font-weight: 400
 
-table a, table a:active, table a:focus
-  color: $color2
-  &:hover
-    font-weight: 300
 a.btn:hover
   font-weight: 400
 
-#page-wrapper
-  background-color: #fff
-  padding-bottom: 50px
-
 /* --- 2. BLOCS --- */
 
-/* 2.1. Header */
+section
+  height: 100%
 
-.navbar
-  min-height: 75px
+  /* 2.1. Header */
 
-.navbar-default
-  background-color: $color1
-  border: none
-  box-shadow: 1px 1px 2px #ccc
-  color: #fff
-  a
-    color: #fff
-  .sidebar
-    background-color: $color2
-    box-shadow: none
-    margin-top: 75px
-    h1
-      padding: 0 15px
-  .sidebar-nav > ul li
-    border: none
-    a:hover, a:focus
+  /* 2.2. Sidebar */
+
+section #sidebar
+  background: $color2
+  height: 100%
+  .menu
+    a
+      color: #fff
+    a:hover, a:focus, .active > a
       background-color: $color1
       color: #fff
-      font-weight: 500
-      outline: none
-    &.active
-      background-color: $color1
-      font-weight: 500
-      & > ul
-        background-color: #fff
-        & > li a
-          padding: 10px 15px 10px 25px
-          color: $color2
-          display: block
-        & > li.active, & > li.active a, & > li a:hover, & > li a:focus
-          background-color: transparent
-          font-weight: 500
+    &.nested
+      margin-left: 0
+      background: #fff
+      padding-left: 1rem
+      & > li > a
+        color: $color2
+        &:hover, &:focus, .active > a
+          background: transparent
           color: $color1
-
-.text-doc
-  border: 1px solid #eee
-  padding: 20px
-  margin-bottom: 20px
-  h1, h2, h3
-    font-weight: 400
-  h1
-    font-size: 26px
-    margin: 0 0 20px
-  h2
-    font-size: 20px
-  h3
-    font-size: 18px
-  ul
-    list-style: inherit
-    padding-left: 15px
 
 /* --- 3. ELEMENTS --- */
 
-/*breadcrumb*/
+  /* 3.1. Buttons */
 
-.breadcrumb
-  margin: 20px 0 10px
-  text-align: right
-  color: #999
-  border: none
-  background: transparent
-  a
-    color: #999
-    &:hover
-      color: $color1
-      font-weight: 400
-  li.active a
-    color: $color1
-  & > li + li::before
-    font-family: 'FontAwesome'
-    content: "\f105"
-
-.separator
-  display: block
-  width: 30px
-  height: 3px
-  margin: 15px 15px 30px 0
-  background-color: #08B6D1
-  position: relative
-.sidebar .separator
-  background-color: #fff
-  margin: 15px 15px 30px
 .btn
+  color: #fff
+  display: inline-block
   padding: 4px 8px
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  border: 1px solid transparent
+  border-radius: 4px
+  &:hover
+    background-color: #fff
+    border-style: solid
+    border-width: 1px
 /*add*/
 .btn-success
   border-color: $color3
   background-color: $color3
   &:hover
-    background-color: #fff
-    border: 1px solid $color3
+    border-color: $color3
     color: $color3
 /*edit*/
 .btn-primary
   border-color: $color4
   background-color: $color4
   &:hover
-    background-color: #fff
-    border: 1px solid $color4
+    border-color: $color4
     color: $color4
 /*search*/
 .btn-info
   border-color: $color1
   background-color: $color1
   &:hover
-    background-color: #fff
-    border: 1px solid $color1
+    border-color: $color1
     color: $color1
 /*see*/
 .btn-default
   border-color: $color5
   background-color: $color5
-  color: #fff
   &:hover
-    background-color: #fff
-    border: 1px solid $color5
+    border-color: $color5
     color: $color5
 /*delete*/
 .btn-danger
   border-color: #c9302c
   background-color: #c9302c
-  color: #fff
   &:hover
-    background-color: #fff
-    border: 1px solid #c9302c
+    border-color: #c9302c
     color: #c9302c
 
-/*summernote*/
-.note-editor
-  .btn-default
-    border-color: $color5
-    background-color: #fff
-    color: $color5
-    &:hover
-      background-color: $color5
-      border: 1px solid $color5
-      color: #fff
 
-  .note-editable ul
-    list-style: inherit
-    padding-left: 15px
-
-.note-headline .dropdown-menu, .note-editable
-  h1, h2, h3
-    margin: 20px 0 10px
-    font-weight: 300
-  h1
-    font-size: 26px
-  h2
-    font-size: 20px
-  h3
-    font-size: 18px
-
-
-.smaller
-  -webkit-transform: scale(0.8)
-  -moz-transform: scale(0.8)
-  -o-transform: scale(0.8)
-
-.bigger
-  -webkit-transform: scale(1.3)
-  -moz-transform: scale(1.3)
-  -o-transform: scale(1.3)
-
-.off
-  opacity: 0.2
-
-img.selected
-  border: 2px solid #444
-
-img.danger
-  border-color: #D9534F
-
-img.primary
-  border-color: #428BCA
-
-label
-  color: #666
-  .view
-    color: #777
-    width: 130px
-    text-align:  right
-    padding-right:  10px
-    font-weight:  normal
-
-a.menu_rubrique.active
-  font-weight:  bold
-
-/* SORTABLE */
-
-body.dragging, body.dragging *
-  cursor:  move !important
-
-.dragged
-  position:  absolute
-  opacity:  0.5
-  z-index:  2000
-  background: silver
-
-.sortable
-  margin-bottom: 30px
-  li
-    padding: 5px
-    margin: 10px 5px
-    border: 1px dotted silver
-    background: #fafafa
-    cursor: move
-  li:hover
-    background: #ddd
-  li.placeholder
-    position:  relative
-    background: #aaa
-    padding: 1px
-  li.placeholder:before
-    position:  absolute
-
-/** Define arrowhead **/
-.pad_btn
-  padding: 2px 10px
-  opacity: 0.5
-  .active
-    opacity: 1
-
-h1.page-header
-  margin: 15px 0
-
-tr.offline td
-  background: url('../images/bg-rayures.png')
-
-.for_checkbox
-  font-weight: normal
-.for_checkbox.active
-  font-weight: bold
-
-label.for_radio
-  font-weight: normal
-
-a.aide
-  cursor: help
-
-td.primary a, td.success a, td.warning a, td.danger a, td.default a
-  color: #333
-
-#frm_filters select.active,
-#frm_filters input.active
-  border-left: 5px solid #31B0D5
-
-th, th a
-  color: #666
-th a:hover
-  color: #000
-  cursor: pointer
-  text-decoration: none
-.no_bold
-  font-weight: normal
-a.no_blue
-  color: #333
-.rayures, tr.rayures td
-  background: url('../images/rayures.png')
-tr.cumul td
-  font-style:  italic
-
-.bg_gris
-  background-color:  #f0f0f0
-
-tr.top td
-  text-align:  center
-  color: #999
-
-/*ELSE*/
-#form-rubrique
+.is-accordion-submenu-parent > a::after
   display: none
-
-i.ico-big
-  font-size: 30px
-
-/*--- TABS ---*/
-
-.nav-tabs
-  border: none

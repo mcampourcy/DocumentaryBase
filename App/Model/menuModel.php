@@ -3,17 +3,17 @@
 namespace App\Model;
 
 /**
- * Class rubriqueModel
+ * Class menuModel
  * @package App\Model
  */
 
-class rubriqueModel
+class menuModel
 {
 
-    private $id;
+    public $id;
     public $nom;
-    public $univers;
-    public $slug;
+    public $icon;
+    public $rubrique;
 
     public function __construct($params = [])
     {
@@ -79,52 +79,47 @@ class rubriqueModel
 	/**
 	 * @return mixed
 	 */
-	public function getUnivers()
+	public function getIcon()
 	{
-		return $this->univers;
+		return $this->icon;
 	}
 
 	/**
-	 * @param mixed $univers
+	 * @param mixed $icon
 	 */
-	public function setUnivers($univers)
+	public function setIcon($icon)
 	{
-		if(is_string($univers)) {
-			if(strlen($univers) < 150) {
-				$this->univers = $univers;
+		if(is_string($icon)) {
+			if(strlen($icon) < 150) {
+				$this->icon = $icon;
 			} else {
-				throw new \InvalidArgumentException("L'univers doit être inférieur à 150 caractères");
+//				//renvoie une erreur (ici erreur argument invalide)
+//				//on peut faire ses propre classes d'erreur-> il suffit qu'elle extend exception
+				throw new \InvalidArgumentException("Le nom de l'icône doit être inférieur à 150 caractères");
 			}
 		} else {
-			throw new \InvalidArgumentException("L'univers doit etre une chaine de caractères");
+			throw new \InvalidArgumentException("Le nom de l'icône doit etre une chaine de caractères");
 		}
 	}
 
 	/**
-	 * @return int
+	 * @return mixed
 	 */
-	public function getSlug()
+	public function getRubrique()
 	{
-		return $this->slug;
+		return $this->rubrique;
 	}
 
 	/**
-	 * @param int $id
+	 * @param mixed $icon
 	 */
-	public function setSlug($slug)
+	public function setRubrique($rubrique)
 	{
-		if(is_string($slug)) {
-			$this->slug = $slug;
+		if(is_array($rubrique)) {
+			$this->rubrique = $rubrique;
 		} else {
-			throw new \InvalidArgumentException("L'id doit etre un nombre");
+			throw new \InvalidArgumentException("Erreur dans la rubrique");
 		}
 	}
 
-	public function toArray() {
-		return array(
-			'nom' => $this->nom,
-			'univers' => $this->univers,
-			'slug' => $this->slug
-		);
-	}
 }

@@ -3,30 +3,33 @@
 namespace App\Controller;
 use App\DB\universDAO;
 use App\Model\universModel;
-use App\View\generateView;
 
 /**
  * Class universController
  * @package App\Controller
  */
 
-class universController
+class universController extends Controller
 {
+	private $DB;
 
-    public function getAllUnivers(){
-        $getAll = new universDAO();
-        $dataUnivers = $getAll->getUnivers();
-        $model = $this->callUniversModel($dataUnivers);
-        $view = new generateView('univers');
-        $view->render($model);
-    }
+	public function __construct($test = null){
+		$page = ($test == null) ? __CLASS__ : $test;
+		parent::__construct($page);
+		$this->DB = new universDAO();
+	}
 
-    public function callUniversModel($datas){
-        $dataArray = [];
-        foreach ($datas as $data){
-            $dataArray[] = new universModel($data);
-        }
-        return $dataArray;
-    }
-    
+	public function getAllUnivers(){
+		$dataUnivers = $this->DB->getUnivers();
+		$model = $this->callUniversModel($dataUnivers);
+		$this->callView($model);
+	}
+
+	public function callUniversModel($datas){
+		$dataArray = [];
+		foreach ($datas as $data){
+			$dataArray[] = new universModel($data);
+		}
+		return $dataArray;
+	}
 }

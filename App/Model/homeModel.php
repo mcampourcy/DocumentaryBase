@@ -74,7 +74,13 @@ class homeModel
      */
     public function setTitre($titre)
     {
-        $this->titre = $titre;
+//	    if(is_string($titre)) {
+//		    if(strlen($titre) < 10) {
+	            $this->titre = $titre;
+//		    } else {
+//			    throw new \InvalidArgumentException("Le titre doit être inférieur à 10 caractères");
+//		    }
+//	    }
     }
 
     /**

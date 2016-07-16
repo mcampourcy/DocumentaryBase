@@ -9,16 +9,8 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <!--CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?=DOCBASE?>css/helpers.min.css">
-    <link rel="stylesheet" href="<?=DOCBASE?>css/style.min.css">
+    <link rel="stylesheet" href="<?=FO_URL?>css/foundation.min.css">
+    <link rel="stylesheet" href="<?=FO_URL?>css/helpers.css">
+    <link rel="stylesheet" href="<?=FO_URL?>css/style.css">
 </head>
-
 <body>
-<div id="wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-1">
-                <nav></nav>
-            </div>
-            <div class="col-md-11">

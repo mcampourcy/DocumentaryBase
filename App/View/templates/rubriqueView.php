@@ -4,8 +4,8 @@
         <div class="separator"></div>
     </div>
     <div class="col-md-3 mar_t_30 text-right">
-        <a href="<?=DOCBASE?>/public/index.php" class="btn btn-default"><i class="fa fa-home" aria-hidden="true"></i></a>
-        <a href="" class="btn btn-success">Ajouter une rubrique</a>
+        <a href="<?=FO_URL?>" class="btn btn-default"><i class="fa fa-home" aria-hidden="true"></i></a>
+        <a href="<?=FO_URL?>new/rubrique" class="btn btn-success">Ajouter une rubrique</a>
     </div>
     <div class="col-md-12">
         <div class="table-responsive pad_t_10">
@@ -21,15 +21,15 @@
                 </thead>
                 <tbody>
                 <?php
-                foreach ($datas as $data) {
+                foreach ($rubriqueData as $rubrique) {
                     ?>
                     <tr>
-                        <td width="40" class="text-center"><?= $data->getId() ?></td>
-                        <td><?= $data->getNom() ?></td>
-                        <td><?= $data->getIdUnivers() ?></td>
+                        <td width="40" class="text-center"><?= $rubrique->getId() ?></td>
+                        <td><?= $rubrique->getNom() ?></td>
+                        <td><?= $rubrique->getUnivers() ?></td>
                         <td width="250">
                             <a href="" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
-                            <a href="" class="btn btn-danger delete">Supprimer</a>
+                            <a href="<?=FO_URL?>delete/rubrique/<?=$rubrique->getId()?>" class="btn btn-danger delete">Supprimer</a>
                         </td>
                     </tr>
                     <?php

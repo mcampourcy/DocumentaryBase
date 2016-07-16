@@ -3,27 +3,31 @@
 namespace App\Controller;
 use App\DB\homeDAO;
 use App\Model\homeModel;
-use App\View\generateView;
 
 /**
  * Class homeController
  * @package App\Controller
  */
 
-class homeController
+class homeController extends Controller
 {
 
-    public function getAllHome(){
-        //on instancie l'accès à la base en créant un nouvel objet de connexion
-        $getAll = new homeDAO();
+	private $DB;
+
+	public function __construct($page = null){
+		$page = ($page == null) ? __CLASS__ : $page;
+		parent::__construct($page);
+		//on instancie l'accès à la base en créant un nouvel objet de connexion
+		$this->DB = new homeDAO();
+	}
+
+	public function getAllHome(){
         //on récupère toutes les données
-        $dataHome = $getAll->getAll();
+        $dataHome = $this->DB->getAll();
         //on appelle la méthode interne pour appeler le modèle, avec les données en paramètres
         $model = $this->callHomeModel($dataHome);
-        //on instancie la vue
-        $view = new generateView('home');
-        //on envoie les données dans la vue
-        $view->render($model);
+		//on génère la vue
+		$this->callView($model);
     }
 
     public function callHomeModel($datas){

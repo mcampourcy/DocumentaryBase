@@ -10,7 +10,7 @@ namespace App\Model;
 class universModel
 {
 
-    private $id;
+    public $id;
     public $nom;
     public $position;
     public $icon;

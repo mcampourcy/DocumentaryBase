@@ -4,8 +4,8 @@
         <div class="separator"></div>
     </div>
     <div class="col-md-3 mar_t_30 text-right">
-        <a href="<?=DOCBASE?>/public/index.php" class="btn btn-default"><i class="fa fa-home" aria-hidden="true"></i></a>
-        <a href="" class="btn btn-success">Ajouter un univers</a>
+        <a href="<?=FO_URL?>" class="btn btn-default"><i class="fa fa-home" aria-hidden="true"></i></a>
+        <a href="<?=FO_URL?>insert" class="btn btn-success">Ajouter un univers</a>
     </div>
     <div class="col-md-12">
         <div class="table-responsive pad_t_10">
@@ -22,20 +22,15 @@
                 </thead>
                 <tbody>
                 <?php
-                foreach ($datas as $data) {
+                foreach ($universData as $univers) {
                     ?>
                     <tr>
-                        <td width="40" class="text-center"><?= $data->getId() ?></td>
-                        <td width="40" class="text-center"><?= $data->getPosition() ?></td>
-                        <td><?= $data->getNom() ?></td>
-                        <td><i class="fa <?=$data->getIcon()?>" aria-hidden="true"></i></td>
-<!--                        <td width="150" class="text-center">-->
-<!--                            <a href="--><?//= DOCBASE ?><!--index.php?u=--><?//= $Univers->id ?><!--&p=document_all">-->
-<!--                                --><?//= $docs_lies ?><!-- document--><?//=($docs_lies > 0) ? 's' : ''?>
-<!--                            </a>-->
-<!--                        </td>-->
+                        <td width="40" class="text-center"><?= $univers->getId() ?></td>
+                        <td width="40" class="text-center"><?= $univers->getPosition() ?></td>
+                        <td><?= $univers->getNom() ?></td>
+                        <td><i class="fa <?=$univers->getIcon()?>" aria-hidden="true"></i></td>
                         <td width="250">
-                            <a href="" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
+                            <a href="<?=FO_URL?>univers" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
                             <a href="" class="btn btn-danger delete">Supprimer</a>
                         </td>
                     </tr>

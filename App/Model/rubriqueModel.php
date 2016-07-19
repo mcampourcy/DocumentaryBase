@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Model;
-use App\Functions;
 
 /**
  * Class rubriqueModel
@@ -12,9 +11,9 @@ class rubriqueModel
 {
 
     private $id;
-    public $nom;
-    public $univers;
-    public $slug;
+    private $nom;
+    private $id_univers;
+    private $slug;
 
     public function __construct($params = [])
     {
@@ -77,27 +76,29 @@ class rubriqueModel
 		}
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
-	public function getUnivers()
+	public function getId_univers()
 	{
-		return $this->univers;
+		return $this->id_univers;
 	}
 
 	/**
-	 * @param mixed $univers
+	 * @param mixed $id_univers
 	 */
-	public function setUnivers($univers)
+	public function setId_univers($id_univers)
 	{
-		if(is_string($univers)) {
-			if(strlen($univers) < 150) {
-				$this->univers = $univers;
+		if(is_string($id_univers)) {
+			if(strlen($id_univers) < 150) {
+				$this->id_univers = $id_univers;
 			} else {
-				throw new \InvalidArgumentException("L'univers doit être inférieur à 150 caractères");
+				throw new \InvalidArgumentException("L'id_univers doit être inférieur à 150 caractères");
 			}
 		} else {
-			throw new \InvalidArgumentException("L'univers doit etre une chaine de caractères");
+			throw new \InvalidArgumentException("L'id_univers doit etre une chaine de caractères");
 		}
 	}
 
@@ -115,9 +116,17 @@ class rubriqueModel
 	public function setSlug($slug)
 	{
 		if(is_string($slug)) {
-			$this->slug = Functions::slug($slug);
+			$this->slug = $slug;
 		} else {
 			throw new \InvalidArgumentException("L'id doit etre un nombre");
 		}
+	}
+
+	public function toArray() {
+		return array(
+			'nom' => $this->nom,
+			'id_univers' => $this->id_univers,
+			'slug' => $this->slug
+		);
 	}
 }

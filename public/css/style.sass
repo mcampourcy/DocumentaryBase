@@ -8,6 +8,9 @@
   */
 
 /**
+  * 0. SASS
+  *   0.1. Colors
+  *   0.2. Mixins
   * 1. MAIN
   * 2. BLOCKS
   *   2.1. Header
@@ -15,13 +18,29 @@
   *   2.3. Breadcrumb
   * 3. ELEMENTS
   *   3.1. Buttons
+  *   3.2. Forms
   **/
+
+/* --- 0. SASS --- */
+
+  /* 0.1. Colors */
 
 $color1: #08b6d1
 $color2: #444
 $color3: #a1b62b
 $color4: #e57418
 $color5: #88a1a5
+
+/* 0.2. Mixins */
+
+@mixin box-shadow($box_shadow)
+  -webkit-box-shadow: $box_shadow
+  box-shadow: $box_shadow
+
+@mixin transition($transition)
+  -webkit-transition: $transition
+  -o-transition: $transition
+  transition: $transition
 
 /* --- 1. MAIN --- */
 
@@ -94,6 +113,9 @@ section #sidebar
           background: transparent
           color: $color1
 
+.is-accordion-submenu-parent > a::after
+  display: none
+
 /* --- 3. ELEMENTS --- */
 
   /* 3.1. Buttons */
@@ -101,7 +123,8 @@ section #sidebar
 .btn
   color: #fff
   display: inline-block
-  padding: 4px 8px
+  padding: 6px 12px
+  margin: 5px 0
   text-align: center
   white-space: nowrap
   vertical-align: middle
@@ -148,5 +171,20 @@ section #sidebar
     color: #c9302c
 
 
-.is-accordion-submenu-parent > a::after
-  display: none
+  /* 3.2. Forms */
+
+form
+  label
+    font-weight: 700
+  [type="color"], [type="date"], [type="datetime-local"], [type="datetime"], [type="email"], [type="month"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="week"], textarea, select
+    color: #555
+    font-weight: 400
+    border: 1px solid #ccc
+    border-radius: 4px
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075))
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+    &:focus
+      border-color: $color5
+      outline: 0
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)

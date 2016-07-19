@@ -25,14 +25,14 @@ class rubriqueDAO extends DAO
 		//ATTENTION : SQL a besoin d'un tableau de données, pas d'objets
 		$query = 'INSERT INTO docs_rubriques (nom, id_univers, cree_le, modifie_le, slug)
 		VALUES (:nom, :id_univers, NOW() , NULL, :slug)';
-		$this->query($query, $rubrique->toArray());
+		return $this->query($query, $rubrique);
 	}
 
 	public function updateRubrique($datas){
 		$query = 'UPDATE docs_rubriques
 		SET nom = :nom, id_univers = :id_univers, modifie_le = NOW()
 		WHERE id = :id';
-		$this->query($query, $datas);
+		return $this->query($query, $datas);
 	}
 
 	public function deleteRubrique($id){

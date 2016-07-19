@@ -5,7 +5,7 @@
     </div>
     <div class="medium-3 columns">
         <a href="<?=FO_URL?>" class="btn btn-default"><?=icon('home')?></a>
-        <a href="<?=FO_URL?>insert" class="btn btn-success">Ajouter une rubrique</a>
+        <a href="<?=FO_URL?>new/rubrique" class="btn btn-success">Ajouter une rubrique</a>
     </div>
 </div>
 
@@ -27,9 +27,9 @@
             <tr>
                 <td width="40" class="text-center"><?= $rubrique->getId() ?></td>
                 <td><?= $rubrique->getNom() ?></td>
-                <td><?= $rubrique->getUnivers() ?></td>
+                <td><?= $rubrique->getId_Univers() ?></td>
                 <td width="250">
-                    <a href="" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
+                    <a href="<?=FO_URL?>new/rubrique/<?=$rubrique->getId()?>" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
                     <a href="<?=FO_URL?>delete/rubrique/<?=$rubrique->getId()?>" class="btn btn-danger delete">Supprimer</a>
                 </td>
             </tr>

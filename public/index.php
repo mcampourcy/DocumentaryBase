@@ -2,6 +2,7 @@
 use App\Controller;
 require "../vendor/autoload.php";
 require "../config/config.php";
+require "../config/functions.php";
 
 /*on créé une instance de Slim, avec le debug*/
 $app = new \Slim\Slim([

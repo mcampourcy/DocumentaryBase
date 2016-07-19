@@ -107,7 +107,7 @@ class universModel
     public function setIcon($icon)
     {
         if(is_string($icon)) {
-            $this->icon = Functions::icon($icon);
+            $this->icon = $icon;
         } else {
             throw new \InvalidArgumentException("L'id doit etre un nombre");
         }

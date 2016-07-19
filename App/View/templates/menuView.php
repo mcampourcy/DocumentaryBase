@@ -9,7 +9,7 @@ $p = isset($_GET['url']) ? $_GET['url'] : '';
 			foreach($menu as $Univers){
 				?>
 				<li>
-					<a href=""><?=$Univers->getIcon().$Univers->getNom()?></a>
+					<a href=""><?=icon($Univers->getIcon()).$Univers->getNom()?></a>
 					<?php
 					if($Univers->rubrique){
 						foreach($Univers->rubrique as $Rubrique){

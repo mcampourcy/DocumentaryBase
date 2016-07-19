@@ -1,8 +1,8 @@
 <?php
 $menu_controller = new \App\Controller\menuController();
 $menu = $menu_controller->buildMenu();
+$function = new \App\Functions();
 $filename = substr(key($datas), 0, -4);
-var_dump(\App\Controller\Config::icon('wheel'));
 require_once TEMPLATE_ROOT.'headerView.php';
 include TEMPLATE_ROOT.'menuView.php';
 include TEMPLATE_ROOT.$filename.'View.php';

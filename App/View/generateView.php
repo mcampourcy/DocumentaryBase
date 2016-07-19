@@ -1,8 +1,6 @@
 <?php
 namespace App\View;
 
-use App\Controller\Config;
-
 class generateView
 {
 
@@ -14,7 +12,7 @@ class generateView
     {
 	    $this->filename = $filename.'Data';
         //on construit l'objet avec l'url complète du template
-//        $this->template = TEMPLATE_ROOT.$filename.'View.php';
+//        $this->template = TEMPLATE_ROOT.$filename.'view.php';
 	    $this->template = TEMPLATE_ROOT.'layout.php';
     }
 

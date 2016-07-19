@@ -14,8 +14,8 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "App/",
-      "View\\": "View/templates"
+      "App\\": "app/",
+      "View\\": "view/templates"
     }
   }
 }

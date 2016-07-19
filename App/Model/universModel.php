@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+use App\Functions;
 
 /**
  * Class universModel
@@ -43,7 +44,11 @@ class universModel
      */
     public function setId($id)
     {
-        $this->id = $id;
+        if(is_string($id)) {
+            $this->id = $id;
+        } else {
+            throw new \InvalidArgumentException("L'id doit etre un nombre");
+        }
     }
 
     /**
@@ -59,7 +64,17 @@ class universModel
      */
     public function setNom($nom)
     {
-        $this->nom = $nom;
+        if(is_string($nom)) {
+            if(strlen($nom) < 150) {
+                $this->nom = $nom;
+            } else {
+//				//renvoie une erreur (ici erreur argument invalide)
+//				//on peut faire ses propre classes d'erreur-> il suffit qu'elle extend exception
+                throw new \InvalidArgumentException("Le titre doit être inférieur à 150 caractères");
+            }
+        } else {
+            throw new \InvalidArgumentException("Le titre doit etre une chaine de caractères");
+        }
     }
 
     /**
@@ -91,7 +106,11 @@ class universModel
      */
     public function setIcon($icon)
     {
-        $this->icon = $icon;
+        if(is_string($icon)) {
+            $this->icon = Functions::icon($icon);
+        } else {
+            throw new \InvalidArgumentException("L'id doit etre un nombre");
+        }
     }
 
 }

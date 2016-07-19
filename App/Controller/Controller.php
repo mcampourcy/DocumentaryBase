@@ -14,7 +14,7 @@ class Controller
 
 	/**
 	 * Controller constructor.
-	 * Extract the name of the class Controller to show the View that correspond
+	 * Extract the name of the class Controller to show the view that correspond
 	 * @param $class
 	 */
 	public function __construct($page){

@@ -9,7 +9,7 @@ $p = isset($_GET['url']) ? $_GET['url'] : '';
 			foreach($menu as $Univers){
 				?>
 				<li>
-					<a href=""><?=$Univers->getNom()?></a>
+					<a href=""><?=$Univers->getIcon().$Univers->getNom()?></a>
 					<?php
 					if($Univers->rubrique){
 						foreach($Univers->rubrique as $Rubrique){
@@ -28,7 +28,7 @@ $p = isset($_GET['url']) ? $_GET['url'] : '';
 			}//endfor
 			?>
 			<li>
-				<a href="">Paramètres</a>
+				<a href=""><i class="fa fa-cogs" aria-hidden="true"></i>Paramètres</a>
 				<ul class="menu vertical nested">
 					<li>
 						<a href="<?=FO_URL?>univers">Univers</a>
@@ -40,3 +40,4 @@ $p = isset($_GET['url']) ? $_GET['url'] : '';
 			</li>
 		</ul>
 	</div>
+    <div class="medium-10 columns">

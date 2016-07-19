@@ -31,12 +31,12 @@ class rubriqueController extends Controller
 		} catch(\InvalidArgumentException $e) {
 			echo $e->getMessage();
 		}
-		if($this->page != 'header') $this->callView($model);
+		$this->callView($model);
 	}
 
 	public function newRubrique($datas,$id = null)
 	{
-		$datas['slug'] = Config::slug($datas['nom']);
+		$datas['slug'] = \Config\slug($datas['nom']);
 		//on appelle le model avec le tableau de datas posté -> les vérifications se font dans l'hydrateur -> setter
 		//renvoie un tableau d'objet
 		try { //essaie de créer le model

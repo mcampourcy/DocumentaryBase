@@ -1,6 +1,5 @@
-
-	</div><!-- !row -->
-</div><!-- !container-fluid -->
+    </div><!-- !COLUMNS -->
+</section><!-- !ROW -->
 
 <!--JAVASCRIPT-->
 <script src="https://use.fontawesome.com/a88b464336.js"></script>

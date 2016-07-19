@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+use App\Functions;
 
 /**
  * Class rubriqueModel
@@ -114,17 +115,9 @@ class rubriqueModel
 	public function setSlug($slug)
 	{
 		if(is_string($slug)) {
-			$this->slug = $slug;
+			$this->slug = Functions::slug($slug);
 		} else {
 			throw new \InvalidArgumentException("L'id doit etre un nombre");
 		}
-	}
-
-	public function toArray() {
-		return array(
-			'nom' => $this->nom,
-			'univers' => $this->univers,
-			'slug' => $this->slug
-		);
 	}
 }

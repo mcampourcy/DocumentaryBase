@@ -13,10 +13,6 @@ $app = new \Slim\Slim([
 $view = $app->view();
 $view->setTemplatesDirectory(TEMPLATE_ROOT);
 
-//$app->get('/new/rubrique', function() use ($app){
-//	$app->render('insertRubriqueView.php');
-//});
-
 /* on créé une route, avec la méthode get.
  * 1er paramètre : le nom de la route (www.monsite.fr/maroute)
  * 2ème paramètre : la fonction de callback. ici, elle permet d'appeler le controller adéquat
@@ -37,17 +33,17 @@ $app->get('/rubriques', function(){
 });
 
 $app->get('/new/rubrique(/:id)', function($id = null) use($app){
+	$id = $app->request()->get("id");
 	$controller = new Controller\universController('insertRubrique');
 	$controller->getAllUnivers();
-
 });
 
 $app->post('/new/rubrique/post', function () use($app){
 	$req = $app->request(); //récupère les données envoyées en POST
 	//$req->post() renvoie les données sous forme de tableau
 	$controller = new Controller\rubriqueController();
-	$controller->newRubrique($req->post());
-	$app->redirect(PUBLIC_ROOT.'rubriques');
+	$result = $controller->newRubrique($req->post());
+	if($result > 0) $app->redirect(PUBLIC_ROOT.'rubriques');
 });
 
 $app->get('/delete/rubrique/:id', function($id) use($app){

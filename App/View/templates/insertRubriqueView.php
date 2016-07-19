@@ -1,28 +1,40 @@
-<div class="row">
-	<div class="col-md-9">
-		<h2>Créer une nouvelle rubrique</h2>
-		<div class="separator"></div>
-	</div>
-	<div class="col-md-12">
-		<form action="<?=FO_URL?>new/rubrique/post" method="post">
-			<div class="form-group">
-				<label for="nom">Nom</label>
-				<input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" value="">
+<?php
+var_dump($id);
+?>
+<div class="row column">
+	<h2>Créer une nouvelle rubrique</h2>
+	<div class="separator"></div>
+</div>
+<div class="row column">
+	<form action="<?=FO_URL?>new/rubrique/post" method="post">
+		<div class="row">
+			<div class="medium-4 columns">
+				<label for="nom">Nom
+					<input type="text" placeholder="Nom de la rubrique" id="nom" name="nom" value="">
+				</label>
 			</div>
-			<div class="form-group">
+			<div class="medium-4 columns">
 				<label for="id_univers">Univers</label>
-				<select name="id_univers" id="id_univers">
-					<?php
-					foreach($insertRubriqueData as $univers) {
-						?>
-						<option value="<?=$univers->getId()?>" ><?=$univers->getNom()?></option>
+					<select name="id_univers" id="id_univers">
+						<option value=""></option>
 						<?php
-					}//endfor
-					?>
-				</select>
+						foreach($insertRubriqueData as $univers) {
+							?>
+							<option value="<?=$univers->getId()?>" ><?=$univers->getNom()?></option>
+							<?php
+						}//endfor
+						?>
+					</select>
+				</label>
+
 			</div>
-			<input type="hidden" id="slug" name="slug" value="">
-			<button type="submit" class="btn btn-default">Envoyer</button>
-		</form>
-	</div>
+		</div>
+		<div class="row">
+			<div class="medium-8 columns">
+				<input type="hidden" id="slug" name="slug" value="">
+				<p class="text-right"><button type="submit" class="btn btn-default">Envoyer</button></p>
+
+			</div>
+		</div>
+	</form>
 </div>

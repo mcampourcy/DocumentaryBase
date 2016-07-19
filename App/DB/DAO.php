@@ -53,14 +53,13 @@ class DAO
             //ici : le ': ' + clé du tableau est associé à sa valeur
             //ex :
             //PDO::PARAM_STR — Représente les types de données CHAR, VARCHAR ou les autres types de données sous forme de chaîne de caractères SQL.
-//	        var_dump($stmt);
         }
 	    $stmt->execute(); //PDOStatement::execute — Exécute une requête préparée
 	    $type = strtoupper(substr(trim($stmt->queryString), 0, 6));
 	    if($type=='SELECT') return $stmt->fetchAll(PDO::FETCH_ASSOC); 		// SELECT => renvoie les donnees
 	    if($type=='INSERT') return self::$conn->lastInsertId();			// INSERT => renvoie le nouvel id
 	    return($stmt->rowCount());										// DELETE/UPDATE => renvoie le nb d'enrgistrements affectés
-        //PDOStatement::fetchAll — Retourne un tableau contenant toutes les lignes du jeu d'enregistrements
-        //PDO::FETCH_ASSOC: retourne un tableau indexé par le nom de la colonne comme retourné dans le jeu de résultats
+//        PDOStatement::fetchAll — Retourne un tableau contenant toutes les lignes du jeu d'enregistrements
+//        PDO::FETCH_ASSOC: retourne un tableau indexé par le nom de la colonne comme retourné dans le jeu de résultats
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controller;
+include 'functions.php';
 use App\DB\rubriqueDAO;
+use App\Functions;
 use App\Model\rubriqueModel;
 
 /**
@@ -46,8 +48,10 @@ class rubriqueController extends Controller
 			echo $e->getMessage();
 			//ici, on peut générer des logs avec les méthodes de $e
 		}
-		if($id == null) $this->DB->insertRubrique($model);
-		else $this->DB->updateRubrique($model, $id);
+		$rubrique = $model->toArray();
+		if($id == null) $id_rubrique = $this->DB->insertRubrique($rubrique);
+		else $id_rubrique = $this->DB->updateRubrique($rubrique, $id);
+		return $id_rubrique;
 	}
 
 	public function delRubrique($id)

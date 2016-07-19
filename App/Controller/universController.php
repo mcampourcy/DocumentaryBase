@@ -13,8 +13,8 @@ class universController extends Controller
 {
 	private $DB;
 
-	public function __construct($test = null){
-		$page = ($test == null) ? __CLASS__ : $test;
+	public function __construct($name = null){
+		$page = ($name == null) ? __CLASS__ : $name;
 		parent::__construct($page);
 		$this->DB = new universDAO();
 	}

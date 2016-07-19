@@ -5,7 +5,7 @@
     </div>
     <div class="medium-3 columns">
         <a href="<?=FO_URL?>" class="btn btn-default"><?=icon('home')?></a>
-        <a href="<?=FO_URL?>insert" class="btn btn-success">Ajouter un univers</a>
+        <a href="<?=FO_URL?>new/univers" class="btn btn-success">Ajouter un univers</a>
     </div>
 </div>
 

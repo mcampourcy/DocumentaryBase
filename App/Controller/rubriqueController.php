@@ -5,6 +5,7 @@ include 'functions.php';
 use App\DB\categoryDAO;
 use App\Functions;
 use App\Model\rubriqueModel;
+use App\Model\universModel;
 
 /**
  * Class rubriqueController
@@ -47,14 +48,14 @@ class rubriqueController extends Controller
         foreach($rubrique as $Rubrique){
             $dataUnivers = $this->DB->getUnivers();
             try {
-                $univers = $this->callRubriqueModel($dataUnivers);
+                $univers = $this->callUniversModel($dataUnivers);
             } catch(\InvalidArgumentException $e) {
                 echo $e->getMessage();
             }
+	        $Rubrique->univers = $univers;
         }
-        $datas = ['rubriqueData' => $univers];
-        var_dump($datas);
-//        return $datas['menuData'];
+        $datas = ['rubriqueData' => $rubrique];
+        $this->callView($datas['rubriqueData'], 'insertRubrique');
 	}
 
 	public function newRubrique($datas,$id = null)
@@ -85,6 +86,15 @@ class rubriqueController extends Controller
 		$dataArray = [];
 		foreach ($datas as $data){
 			$dataArray[] = new rubriqueModel($data);
+		}
+		return $dataArray;
+	}
+
+	public function callUniversModel($datas)
+	{
+		$dataArray = [];
+		foreach ($datas as $data){
+			$dataArray[] = new universModel($data);
 		}
 		return $dataArray;
 	}

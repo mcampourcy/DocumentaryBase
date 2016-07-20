@@ -33,7 +33,8 @@ class Controller
 		return $this->name;
 	}
 
-	public function callView($model){
+	public function callView($model, $name = null){
+		if($name) $this->name = $name;
 		//on instancie la vue
 		$view = new generateView($this->name);
 		//on envoie les données dans la vue

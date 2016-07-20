@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-use App\DB\menuDAO;
+use App\DB\categoryDAO;
 use App\Model\rubriqueModel;
 use App\Model\universModel;
 
@@ -25,7 +25,7 @@ class menuController extends Controller
 
 	public function buildMenu()
 	{
-		$this->DB = new menuDAO();
+		$this->DB = new categoryDAO();
 		$dataUnivers = $this->DB->getUnivers();
 		try {
 			$univers = $this->menuUniversModel($dataUnivers);

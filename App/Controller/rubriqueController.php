@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 include 'functions.php';
-use App\DB\rubriqueDAO;
+use App\DB\categoryDAO;
 use App\Functions;
 use App\Model\rubriqueModel;
 
@@ -22,7 +22,7 @@ class rubriqueController extends Controller
 	{
 		$this->page = ($page == null) ? __CLASS__ : $page;
 		parent::__construct($this->page);
-		$this->DB = new rubriqueDAO();
+		$this->DB = new categoryDAO();
 	}
 
 	public function getAllRubriques($id_univers = null)
@@ -34,6 +34,27 @@ class rubriqueController extends Controller
 			echo $e->getMessage();
 		}
 		$this->callView($model);
+	}
+
+	public function getRubrique($id_rubrique)
+	{
+		$dataRubrique = $this->DB->getRubrique($id_rubrique);
+		try {
+			$rubrique = $this->callRubriqueModel($dataRubrique);
+		} catch(\InvalidArgumentException $e) {
+			echo $e->getMessage();
+		}
+        foreach($rubrique as $Rubrique){
+            $dataUnivers = $this->DB->getUnivers();
+            try {
+                $univers = $this->callRubriqueModel($dataUnivers);
+            } catch(\InvalidArgumentException $e) {
+                echo $e->getMessage();
+            }
+        }
+        $datas = ['rubriqueData' => $univers];
+        var_dump($datas);
+//        return $datas['menuData'];
 	}
 
 	public function newRubrique($datas,$id = null)

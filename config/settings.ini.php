@@ -4,7 +4,7 @@ host = 'localhost'
 name = 'modulodoc'
 port = 3306
 user = 'root'
-pass = 'root'
+pass = ''
 
 [url]
 template_root    = 'C:/xampp/htdocs/projets/zeproject/app/view/templates/'

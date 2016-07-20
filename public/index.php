@@ -32,10 +32,10 @@ $app->get('/rubriques', function(){
 	$controller->getAllRubriques();
 });
 
-$app->get('/new/rubrique(/:id)', function($id = null) use($app){
-	$id = $app->request()->get("id");
-	$controller = new Controller\universController('insertRubrique');
-	$controller->getAllUnivers();
+$app->get('/new/rubrique(/:id)', function($id) use($app){
+    $controller = new Controller\rubriqueController();
+    $result = $controller->getRubrique($id);
+    var_dump($result);
 });
 
 $app->post('/new/rubrique/post', function () use($app){

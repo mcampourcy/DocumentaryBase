@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-use App\DB\universDAO;
+use App\DB\categoryDAO;
 use App\Model\universModel;
 
 /**
@@ -16,13 +16,18 @@ class universController extends Controller
 	public function __construct($name = null){
 		$page = ($name == null) ? __CLASS__ : $name;
 		parent::__construct($page);
-		$this->DB = new universDAO();
+		$this->DB = new categoryDAO();
 	}
 
 	public function getAllUnivers(){
 		$dataUnivers = $this->DB->getUnivers();
 		$model = $this->callUniversModel($dataUnivers);
-		$this->callView($model);
+        if($this->name == 'insertRubrique'){
+            return $model;
+        } else {
+            $this->callView($model);
+        }
+		
 	}
 
 	public function callUniversModel($datas){

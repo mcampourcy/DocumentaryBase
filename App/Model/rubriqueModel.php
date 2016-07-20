@@ -11,9 +11,9 @@ class rubriqueModel
 {
 
     private $id;
-    private $nom;
-    private $id_univers;
-    private $slug;
+    public $nom;
+    public $id_univers;
+    public $slug;
 
     public function __construct($params = [])
     {

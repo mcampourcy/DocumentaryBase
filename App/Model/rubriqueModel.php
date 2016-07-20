@@ -13,6 +13,7 @@ class rubriqueModel
     private $id;
     public $nom;
     public $id_univers;
+    public $univers;
     public $slug;
 
     public function __construct($params = [])

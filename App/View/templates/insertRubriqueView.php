@@ -1,5 +1,14 @@
 <?php
-var_dump($id);
+if($insertRubriqueData){
+	var_dump($insertRubriqueData);
+	foreach($insertRubriqueData as $rubrique) {
+		$id = $rubrique->getId();
+		$nom = $rubrique->getNom();
+		$slug = $rubrique->getSlug();
+		$id_univers = $rubrique->getId_univers();
+	}//endfor
+}//endif
+var_dump($id, $nom, $slug, $id_univers);
 ?>
 <div class="row column">
 	<h2>Créer une nouvelle rubrique</h2>
@@ -18,7 +27,7 @@ var_dump($id);
 					<select name="id_univers" id="id_univers">
 						<option value=""></option>
 						<?php
-						foreach($insertRubriqueData as $univers) {
+						foreach ($rubrique->univers as $univers){
 							?>
 							<option value="<?=$univers->getId()?>" ><?=$univers->getNom()?></option>
 							<?php

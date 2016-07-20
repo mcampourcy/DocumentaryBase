@@ -35,7 +35,7 @@ $app->get('/rubriques', function(){
 $app->get('/new/rubrique(/:id)', function($id) use($app){
     $controller = new Controller\rubriqueController();
     $result = $controller->getRubrique($id);
-    var_dump($result);
+//    var_dump($result);
 });
 
 $app->post('/new/rubrique/post', function () use($app){

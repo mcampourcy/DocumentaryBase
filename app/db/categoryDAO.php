@@ -22,15 +22,15 @@ class categoryDAO extends DAO
     }
 
     public function getRubriques($id_univers){
-	    $query = 'SELECT r.id AS id, r.nom AS nom, u.nom AS univers, u.id AS univers_id
+	    $query = 'SELECT r.id AS id, r.nom AS nom, r.slug AS slug, u.nom AS univers, u.id AS univers_id
 		FROM docs_rubriques r
 		RIGHT JOIN docs_univers u ON r.id_univers = u.id';
 	    if($id_univers) $query .= ' WHERE r.id_univers = '.$id_univers;
         return $this->query($query);
     }
 
-	public function getRubrique($id_rubrique){
-		$query = 'SELECT id, nom
+	public function getRubrique($id_rubrique = null){
+		$query = 'SELECT id, nom, slug, id_univers
 		FROM docs_rubriques
 		WHERE id = :id_rubrique';
         $datas = array('id_rubrique' => $id_rubrique);
@@ -46,9 +46,10 @@ class categoryDAO extends DAO
 
 	public function updateRubrique($datas){
 		$query = 'UPDATE docs_rubriques
-		SET nom = :nom, id_univers = :id_univers, modifie_le = NOW()
+		SET nom = :nom, id_univers = :id_univers, modifie_le = NOW(), slug = :slug
 		WHERE id = :id';
-		return $this->query($query, $datas);
+        var_dump($datas);
+//		return $this->query($query, $datas);
 	}
 
 	public function deleteRubrique($id){

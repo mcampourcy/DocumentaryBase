@@ -37,30 +37,32 @@ class rubriqueController extends Controller
 		$this->callView($model);
 	}
 
-	public function getRubrique($id_rubrique)
+	public function getRubrique($id_rubrique = null)
 	{
-		$dataRubrique = $this->DB->getRubrique($id_rubrique);
-		try {
-			$rubrique = $this->callRubriqueModel($dataRubrique);
-		} catch(\InvalidArgumentException $e) {
-			echo $e->getMessage();
-		}
+        if($id_rubrique) {
+            $dataRubrique = $this->DB->getRubrique($id_rubrique);
+        } else {
+            $dataRubrique = [['id' => '', 'nom' => '', 'slug' => '', 'id_univers' => '']];
+        }
+        try {
+            $rubrique = $this->callRubriqueModel($dataRubrique);
+        } catch (\InvalidArgumentException $e) {
+            echo $e->getMessage();
+        }
         foreach($rubrique as $Rubrique){
-            $dataUnivers = $this->DB->getUnivers();
-            try {
-                $univers = $this->callUniversModel($dataUnivers);
-            } catch(\InvalidArgumentException $e) {
-                echo $e->getMessage();
-            }
-	        $Rubrique->univers = $univers;
+            $dataUnivers = new universController('insertRubrique');
+            $univers = $dataUnivers->getAllUnivers();
+            $Rubrique->univers = $univers;
         }
         $datas = ['rubriqueData' => $rubrique];
         $this->callView($datas['rubriqueData'], 'insertRubrique');
+
 	}
 
 	public function newRubrique($datas,$id = null)
 	{
 		$datas['slug'] = Functions::slug($datas['nom']);
+        if($id > 0) $datas['id'] = $id;
 		//on appelle le model avec le tableau de datas posté -> les vérifications se font dans l'hydrateur -> setter
 		//renvoie un tableau d'objet
 		try { //essaie de créer le model
@@ -71,8 +73,8 @@ class rubriqueController extends Controller
 			//ici, on peut générer des logs avec les méthodes de $e
 		}
 		$rubrique = $model->toArray();
-		if($id == null) $id_rubrique = $this->DB->insertRubrique($rubrique);
-		else $id_rubrique = $this->DB->updateRubrique($rubrique, $id);
+		if($id < 0) $id_rubrique = $this->DB->insertRubrique($rubrique);
+		else $id_rubrique = $this->DB->updateRubrique($rubrique);
 		return $id_rubrique;
 	}
 

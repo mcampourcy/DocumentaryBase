@@ -32,17 +32,16 @@ $app->get('/rubriques', function(){
 	$controller->getAllRubriques();
 });
 
-$app->get('/new/rubrique(/:id)', function($id) use($app){
+$app->get('/new/rubrique(/:id)', function($id = null) use($app){
     $controller = new Controller\rubriqueController();
-    $result = $controller->getRubrique($id);
-//    var_dump($result);
+    $controller->getRubrique($id);
 });
 
-$app->post('/new/rubrique/post', function () use($app){
+$app->post('/new/rubrique/post(/:id)', function ($id) use($app){
 	$req = $app->request(); //récupère les données envoyées en POST
 	//$req->post() renvoie les données sous forme de tableau
 	$controller = new Controller\rubriqueController();
-	$result = $controller->newRubrique($req->post());
+	$result = $controller->newRubrique($req->post(), $id);
 	if($result > 0) $app->redirect(PUBLIC_ROOT.'rubriques');
 });
 

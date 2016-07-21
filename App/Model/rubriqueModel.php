@@ -125,6 +125,7 @@ class rubriqueModel
 
 	public function toArray() {
 		return array(
+			'id' => $this->id,
 			'nom' => $this->nom,
 			'id_univers' => $this->id_univers,
 			'slug' => $this->slug

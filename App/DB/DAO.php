@@ -48,7 +48,7 @@ class DAO
         $sql = trim($sql); //trim — Supprime les espaces (ou d'autres caractères) en début et fin de chaîne
         $stmt = self::$conn->prepare($sql); //PDO::prepare — Prépare une requête à l'exécution et retourne un objet
         foreach ($data as $name => $value) { //pour chaque ligne du tableau de données...
-            $stmt->bindValue(':' . $name, $value, PDO::PARAM_STR); 
+            $stmt->bindValue(':' . $name, $value, PDO::PARAM_STR);
             //PDOStatement::bindValue — Associe une valeur à un paramètre
             //ici : le ': ' + clé du tableau est associé à sa valeur
             //ex :

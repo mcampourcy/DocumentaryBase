@@ -9,19 +9,103 @@ namespace App\DB;
 class categoryDAO extends DAO
 {
 
+    /**
+     * categoryDAO constructor.
+     */
     public function __construct(){
         parent::__construct();
     }
 
-    public function getUnivers(){
-        return $this->query('SELECT id, nom, position, icon, slug FROM docs_univers');
+    //CATEGORY
+
+    /**
+     * Function getAll
+     * @return array
+     */
+    public function getAllCategories(){
+        return $this->query('SELECT id, name, icon, slug, creation_date, last_update, id_parent FROM docs_categories');
     }
 
-    public function addUnivers($nom, $icon = null){
-        return $this->query('INSERT INTO docs_univers VALUES "", "'.$nom.'", "", "'.$icon.'", "'.slug($nom).'"');
+    public function getOneCategory($id){
+        $query = 'SELECT id, name, icon, slug, creation_date, last_update, id_parent 
+        FROM docs_categories
+        WHERE id = :id';
+        $datas = array('id' => $id);
+        return $this->query($query, $datas);
     }
 
-    public function getRubriques($id_univers){
+    public function insertCategory($datas){
+        $datas = $this->toArray($datas);
+        array_splice($datas, -1, 1);
+        $datas['id'] = '';
+        //WARNING : SQL needs a array of datas, not objects
+        $query = 'INSERT INTO docs_categories (id, name, icon, slug, creation_date, last_update, id_parent)
+        VALUES (:id, :name, :icon, :slug, NOW(), NULL, :id_parent)';
+        return $this->query($query, $datas);
+    }
+
+    public function updateCategory($datas){
+        $datas = $this->toArray($datas);
+        array_splice($datas, -1, 1);
+        //WARNING : SQL needs a array of datas, not objects
+        $query = 'UPDATE docs_categories
+		SET name = :name, icon = :icon, last_update = NOW(), slug = :slug, id_parent = :id_parent
+		WHERE id = :id';
+        return $this->query($query, $datas);
+    }
+
+    public function deleteCategory($id){
+        $query = 'DELETE FROM docs_categories WHERE id = :id';
+        $datas = array('id' => $id);
+        $this->query($query, $datas);
+    }
+
+    public function toArray($datas) {
+        $array = [];
+        foreach ($datas as $k => $v){
+            if($v === '') $v = NULL;
+            $array[$k] = $v;
+        }
+        return $array;
+    }
+
+    //UNIVERS
+
+	public function getAllUnivers(){
+		return $this->query('SELECT id, nom, position, icon, slug FROM docs_univers');
+	}
+
+	public function getUnivers($id_univers = null){
+		$query = 'SELECT id, nom, icon, slug
+		FROM docs_univers
+		WHERE id = :id_univers';
+		$datas = array('id_univers' => $id_univers);
+		return $this->query($query, $datas);
+	}
+
+    public function insertUnivers($univers){
+        //ATTENTION : SQL a besoin d'un tableau de données, pas d'objets
+        $query = 'INSERT INTO docs_univers (id, nom, icon, cree_le, modifie_le, slug)
+		VALUES (:id, :nom, :icon, NOW() , NULL, :slug)';
+        return $this->query($query, $univers);
+    }
+
+    public function updateUnivers($datas){
+        $query = 'UPDATE docs_univers
+		SET nom = :nom, icon = :icon, modifie_le = NOW(), slug = :slug
+		WHERE id = :id';
+        return $this->query($query, $datas);
+    }
+
+    public function deleteUnivers($id){
+        $query = 'DELETE FROM docs_univers WHERE id = :id';
+        $datas = array('id' => $id);
+        $this->query($query, $datas);
+    }
+
+    //RUBRIQUES
+
+    public function getAllRubriques($id_univers){
 	    $query = 'SELECT r.id AS id, r.nom AS nom, r.slug AS slug, u.nom AS univers, u.id AS univers_id
 		FROM docs_rubriques r
 		RIGHT JOIN docs_univers u ON r.id_univers = u.id';
@@ -39,8 +123,8 @@ class categoryDAO extends DAO
 
 	public function insertRubrique($rubrique){
 		//ATTENTION : SQL a besoin d'un tableau de données, pas d'objets
-		$query = 'INSERT INTO docs_rubriques (nom, id_univers, cree_le, modifie_le, slug)
-		VALUES (:nom, :id_univers, NOW() , NULL, :slug)';
+		$query = 'INSERT INTO docs_rubriques (id, nom, id_univers, cree_le, modifie_le, slug)
+		VALUES (:id, :nom, :id_univers, NOW() , NULL, :slug)';
 		return $this->query($query, $rubrique);
 	}
 
@@ -48,8 +132,7 @@ class categoryDAO extends DAO
 		$query = 'UPDATE docs_rubriques
 		SET nom = :nom, id_univers = :id_univers, modifie_le = NOW(), slug = :slug
 		WHERE id = :id';
-        var_dump($datas);
-//		return $this->query($query, $datas);
+		return $this->query($query, $datas);
 	}
 
 	public function deleteRubrique($id){
@@ -57,5 +140,6 @@ class categoryDAO extends DAO
 		$datas = array('id' => $id);
 		$this->query($query, $datas);
 	}
+
 
 }

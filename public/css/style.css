@@ -41,8 +41,7 @@
  *   3.2. Forms
  */
 /* --- 0. SASS --- */
- *
- * /* 0.1. Colors */
+/* 0.1. Colors */
 /* 0.2. Mixins */
 /* --- 1. MAIN --- */
 body {
@@ -87,35 +86,38 @@ a.btn:hover {
   font-weight: 400; }
 
 /* --- 2. BLOCS --- */
-section {
-  height: 100%;
-  /* 2.1. Header */
-  /* 2.2. Sidebar */ }
-
-section #sidebar {
+/* 2.1. Header */
+/* 2.2. Sidebar */
+section.sidebar {
   background: #444;
-  height: 100%; }
-  section #sidebar .menu a {
+  height: 100%;
+  position: fixed;
+  width: 20%; }
+  section.sidebar ul.menu a {
     color: #fff; }
-  section #sidebar .menu a:hover, section #sidebar .menu a:focus, section #sidebar .menu .active > a {
+  section.sidebar ul.menu a:hover, section.sidebar ul.menu a:focus, section.sidebar ul.menu .active > a {
     background-color: #08b6d1;
     color: #fff; }
-  section #sidebar .menu.nested {
+  section.sidebar ul.menu.nested {
     margin-left: 0;
     background: #fff;
     padding-left: 1rem; }
-    section #sidebar .menu.nested > li > a {
+    section.sidebar ul.menu.nested > li > a {
       color: #444; }
-      section #sidebar .menu.nested > li > a:hover, section #sidebar .menu.nested > li > a:focus, section #sidebar .menu.nested > li > a .active > a {
+      section.sidebar ul.menu.nested > li > a:hover, section.sidebar ul.menu.nested > li > a:focus, section.sidebar ul.menu.nested > li > a .active > a {
         background: transparent;
         color: #08b6d1; }
 
 .is-accordion-submenu-parent > a::after {
   display: none; }
 
+section.main-section {
+  position: absolute;
+  width: 80%;
+  right: 0; }
+
 /* --- 3. ELEMENTS --- */
- *
- * /* 3.1. Buttons */
+/* 3.1. Buttons */
 .btn {
   color: #fff;
   display: inline-block;
@@ -166,12 +168,12 @@ section #sidebar {
 /*delete */
 .btn-danger {
   border-color: #c9302c;
-  background-color: #c9302c;
-  /* 3.2. Forms */ }
+  background-color: #c9302c; }
   .btn-danger:hover {
     border-color: #c9302c;
     color: #c9302c; }
 
+/* 3.2. Forms */
 form label {
   font-weight: 700; }
 form [type="color"], form [type="date"], form [type="datetime-local"], form [type="datetime"], form [type="email"], form [type="month"], form [type="number"], form [type="password"], form [type="search"], form [type="tel"], form [type="text"], form [type="time"], form [type="url"], form [type="week"], form textarea, form select {

@@ -48,7 +48,7 @@
 
 /* --- 0. SASS --- */
 
-  /* 0.1. Colors */
+/* 0.1. Colors */
 
 $color1: #08b6d1
 $color2: #444
@@ -112,17 +112,16 @@ a.btn:hover
 
 /* --- 2. BLOCS --- */
 
-section
-  height: 100%
+/* 2.1. Header */
 
-  /* 2.1. Header */
+/* 2.2. Sidebar */
 
-  /* 2.2. Sidebar */
-
-section #sidebar
+section.sidebar
   background: $color2
   height: 100%
-  .menu
+  position: fixed
+  width: 20%
+  ul.menu
     a
       color: #fff
     a:hover, a:focus, .active > a
@@ -141,9 +140,14 @@ section #sidebar
 .is-accordion-submenu-parent > a::after
   display: none
 
+section.main-section
+  position: absolute
+  width: 80%
+  right: 0
+
 /* --- 3. ELEMENTS --- */
 
-  /* 3.1. Buttons */
+/* 3.1. Buttons */
 
 .btn
   color: #fff
@@ -196,7 +200,7 @@ section #sidebar
     color: #c9302c
 
 
-  /* 3.2. Forms */
+/* 3.2. Forms */
 
 form
   label

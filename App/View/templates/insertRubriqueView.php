@@ -6,12 +6,12 @@
     <?php
     foreach($insertRubriqueData as $rubrique) {
         ?>
-        <form action="<?= FO_URL ?>new/rubrique/post<?= ($rubrique->getId() != null) ? '/' . $rubrique->getId() : '' ?>" method="post">
+        <form action="<?= FO_URL ?>new/rubrique/post<?= ($rubrique->getId() != '') ? '/' . $rubrique->getId() : '' ?>" method="post">
             <div class="row">
                 <div class="medium-4 columns">
                     <label for="nom">Nom
                         <input type="text" placeholder="Nom de la rubrique" id="nom" name="nom"
-                               value="<?= ($rubrique->getNom() != null) ? $rubrique->getNom() : '' ?>">
+                               value="<?= ($rubrique->getNom() != '') ? $rubrique->getNom() : '' ?>">
                     </label>
                 </div>
                 <div class="medium-4 columns">
@@ -32,7 +32,7 @@
             </div>
             <div class="row">
                 <div class="medium-8 columns">
-                    <input type="hidden" id="slug" name="slug" value="<?= ($rubrique->getSlug() != null) ? $rubrique->getSlug() : '' ?>">
+                    <input type="hidden" id="slug" name="slug" value="<?= ($rubrique->getSlug() != '') ? $rubrique->getSlug() : '' ?>">
                     <p class="text-right">
                         <button type="submit" class="btn btn-default">Envoyer</button>
                     </p>

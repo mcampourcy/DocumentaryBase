@@ -4,18 +4,20 @@ namespace App\Model;
 use App\Functions;
 
 /**
- * Class universModel
+ * Class categoryModel
  * @package App\Model
  */
 
-class universModel
+class categoryModel
 {
 
     public $id;
-    public $nom;
-    public $position;
+    public $name;
     public $icon;
     public $slug;
+    public $id_parent;
+    public $select_cat;
+
 
     public function __construct($params = [])
     {
@@ -55,19 +57,19 @@ class universModel
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
      * @param mixed $nom
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        if(is_string($nom)) {
-            if(strlen($nom) < 150) {
-                $this->nom = $nom;
+        if(is_string($name)) {
+            if(strlen($name) < 150) {
+                $this->name = $name;
             } else {
 //				//renvoie une erreur (ici erreur argument invalide)
 //				//on peut faire ses propre classes d'erreur-> il suffit qu'elle extend exception
@@ -76,22 +78,6 @@ class universModel
         } else {
             throw new \InvalidArgumentException("Le titre doit etre une chaine de caractères");
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
-    /**
-     * @param mixed $position
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
     }
 
     /**
@@ -134,13 +120,46 @@ class universModel
 		}
 	}
 
-    public function toArray() {
-        return array(
-            'id' => $this->id,
-            'nom' => $this->nom,
-            'icon' => $this->icon,
-            'slug' => $this->slug
-        );
+    /**
+     * @return mixed
+     */
+    public function getId_Parent()
+    {
+        return $this->id_parent;
+    }
+
+    /**
+     * @param mixed $id_parent
+     */
+    public function setId_Parent($id_parent)
+    {
+        if((is_string($id_parent)) || ($id_parent === null)) {
+            $this->id_parent = $id_parent;
+        } else {
+            throw new \InvalidArgumentException("L'id_parent doit etre un nombre");
+        }
+        $this->id_parent = $id_parent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSelect_cat()
+    {
+        return $this->select_cat;
+    }
+
+    /**
+     * @param mixed $select_cat
+     */
+    public function setSelect_cat($select_cat)
+    {
+        if((is_string($select_cat))) {
+            $this->select_cat = $select_cat;
+        } else {
+            throw new \InvalidArgumentException("Select_cat doit être un chiffre");
+        }
+        $this->select_cat = $select_cat;
     }
 
 }

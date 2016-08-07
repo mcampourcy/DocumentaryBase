@@ -26,14 +26,14 @@ class menuController extends Controller
 	public function buildMenu()
 	{
 		$this->DB = new categoryDAO();
-		$dataUnivers = $this->DB->getUnivers();
+		$dataUnivers = $this->DB->getAllUnivers();
 		try {
 			$univers = $this->menuUniversModel($dataUnivers);
 		} catch(\InvalidArgumentException $e) {
 			echo $e->getMessage();
 		}
 		foreach($univers as $Univers){
-			$dataRubriques = $this->DB->getRubriques($Univers->id);
+			$dataRubriques = $this->DB->getAllRubriques($Univers->id);
 			try {
 				$model = $this->menuRubriqueModel($dataRubriques);
 			} catch(\InvalidArgumentException $e) {

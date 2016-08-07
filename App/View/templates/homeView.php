@@ -1,6 +1,7 @@
 <?php
 foreach ($homeData as $data){
     ?>
+<div class="column row">
 	<h2><?=$data->getTitre()?></h2>
 	<div class="separator"></div>
 	<a href="<?=FO_URL?>" class="btn btn-success">Ajouter un document</a>
@@ -8,6 +9,7 @@ foreach ($homeData as $data){
 	<p><?=$data->getDescription()?></p>
 	<p class="mar_t_30"><a href="<?=FO_URL?>univers">Voir tous les univers</a></p>
 	<p class="mar_t_30"><a href="<?=FO_URL?>rubriques">Voir toutes les rubriques</a></p>
+</div>
 <?php
 }
 ?>

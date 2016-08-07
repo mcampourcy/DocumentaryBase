@@ -28,7 +28,7 @@ class rubriqueController extends Controller
 
 	public function getAllRubriques($id_univers = null)
 	{
-		$dataRubriques = $this->DB->getRubriques($id_univers);
+		$dataRubriques = $this->DB->getAllRubriques($id_univers);
 		try {
 			$model = $this->callRubriqueModel($dataRubriques);
 		} catch(\InvalidArgumentException $e) {
@@ -56,7 +56,6 @@ class rubriqueController extends Controller
         }
         $datas = ['rubriqueData' => $rubrique];
         $this->callView($datas['rubriqueData'], 'insertRubrique');
-
 	}
 
 	public function newRubrique($datas,$id = null)
@@ -73,7 +72,7 @@ class rubriqueController extends Controller
 			//ici, on peut générer des logs avec les méthodes de $e
 		}
 		$rubrique = $model->toArray();
-		if($id < 0) $id_rubrique = $this->DB->insertRubrique($rubrique);
+		if($id == 0) $id_rubrique = $this->DB->insertRubrique($rubrique);
 		else $id_rubrique = $this->DB->updateRubrique($rubrique);
 		return $id_rubrique;
 	}

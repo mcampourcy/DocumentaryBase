@@ -44,7 +44,7 @@ class rubriqueModel
 	 */
 	public function setId($id)
 	{
-		if(is_string($id)) {
+		if((is_string($id)) || ($id = null)) {
 			$this->id = $id;
 		} else {
 			throw new \InvalidArgumentException("L'id doit etre un nombre");
@@ -116,10 +116,10 @@ class rubriqueModel
 	 */
 	public function setSlug($slug)
 	{
-		if(is_string($slug)) {
+		if((is_string($slug)) || (empty($slug))) {
 			$this->slug = $slug;
 		} else {
-			throw new \InvalidArgumentException("L'id doit etre un nombre");
+			throw new \InvalidArgumentException("Le slug doit etre un nombre");
 		}
 	}
 

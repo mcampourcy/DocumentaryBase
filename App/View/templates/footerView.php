@@ -1,5 +1,4 @@
-    </div><!-- !COLUMNS -->
-</section><!-- !ROW -->
+</section>
 
 <!--JAVASCRIPT-->
 <script src="https://use.fontawesome.com/a88b464336.js"></script>

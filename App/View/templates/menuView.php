@@ -1,34 +1,31 @@
 <?php
 $p = isset($_GET['url']) ? $_GET['url'] : '';
+var_dump($p);
 ?>
 <section class="sidebar">
 	<ul class="vertical menu" data-accordion-menu>
-		<li class="<?=(empty($p)) ? 'active' : ''?>"><a href="<?=FO_URL?>">Accueil</a></li>
+		<li class="<?=(empty($p)) ? 'active' : ''?>"><a href="<?=FO_URL?>"><?=icon('home')?>Accueil</a></li>
+		<li class="<?=($p == 'documents') ? 'active' : ''?>"><a href="<?=FO_URL?>documents"><?=icon('files-o')?>Tous les documents</a></li>
         <?php
 		foreach($menu as $category){
 			?>
 			<li>
-				<a href=""><?=icon($category->getCat_Icon()).$category->getCat_Name()?></a>
+				<a href="#"><?=icon($category->getCat_Icon()).$category->getCat_Name()?></a>
 				<?php
-                $subcat_id = explode(',', $category->getSubcat_Id());
-                $subcat_name = explode(',', $category->getSubcat_Name());
-                $subcat_slug = explode(',', $category->getSubcat_Slug());
-                $array = [];
-                for($ii = 0; $ii < count($subcat_id); $ii++){
-                    $array['subcat_id'] = $subcat_id[$ii];
-                    $array['subcat_name'] = $subcat_name[$ii];
-                    $array['subcat_slug'] = $subcat_slug[$ii];
-                }
-                foreach ($array as $a){
-                    var_dump($a);
-                    ?>
-                    <ul class="menu vertical nested">
-                        <li>
-                            <a href=""></a>
-                        </li>
-                    </ul>
-                    <?php
-                }
+                if($category->getSubcat_Id()){
+                    $subcat_id = explode(',', $category->getSubcat_Id());
+                    $subcat_name = explode(',', $category->getSubcat_Name());
+                    $subcat_slug = explode(',', $category->getSubcat_Slug());
+                    for($ii = 0; $ii < count($subcat_id); $ii++){
+                        ?>
+                        <ul class="menu vertical nested">
+                            <li>
+                            <a href="<?=FO_URL.$category->getCat_Slug().'-'.$category->getCat_Id().'/'.$subcat_slug[$ii].'-'.$subcat_id[$ii]?>"><?=$subcat_name[$ii]?></a>
+                            </li>
+                        </ul>
+                        <?php
+                    }//endfor
+                }//endif
 				?>
 			</li>
 			<?php

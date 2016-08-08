@@ -27,61 +27,16 @@ class documentController extends Controller
 		$this->DB = new documentDAO();
 	}
 
-	public function getAllDocuments($id_univers = null, $id_rubrique = null)
+	public function getAllDocuments()
 	{
-		$dataDocuments = $this->DB->getAllDocuments($id_univers, $id_rubrique);
+		$datas = $this->DB->getAllDocuments();
 		try {
-			$model = $this->callDocumentModel($dataDocuments);
+			$model = $this->callDocumentModel($datas);
 		} catch(\InvalidArgumentException $e) {
 			echo $e->getMessage();
 		}
 		$this->callView($model, 'documents');
 	}
-
-//	public function getRubrique($id_rubrique = null)
-//	{
-//        if($id_rubrique) {
-//            $dataRubrique = $this->DB->getRubrique($id_rubrique);
-//        } else {
-//            $dataRubrique = [['id' => '', 'nom' => '', 'slug' => '', 'id_univers' => '']];
-//        }
-//        try {
-//            $rubrique = $this->callRubriqueModel($dataRubrique);
-//        } catch (\InvalidArgumentException $e) {
-//            echo $e->getMessage();
-//        }
-//        foreach($rubrique as $Rubrique){
-//            $dataUnivers = new universController('insertRubrique');
-//            $univers = $dataUnivers->getAllUnivers();
-//            $Rubrique->univers = $univers;
-//        }
-//        $datas = ['rubriqueData' => $rubrique];
-//        $this->callView($datas['rubriqueData'], 'insertRubrique');
-//	}
-//
-//	public function newRubrique($datas,$id = null)
-//	{
-//		$datas['slug'] = Functions::slug($datas['nom']);
-//        if($id > 0) $datas['id'] = $id;
-//		//on appelle le model avec le tableau de datas posté -> les vérifications se font dans l'hydrateur -> setter
-//		//renvoie un tableau d'objet
-//		try { //essaie de créer le model
-//			$model = new rubriqueModel($datas);
-//		} catch(\InvalidArgumentException $e) { //si erreur, on l'affiche (cf throw dans model)
-//			//ici, il catch l'invalid argument exception -> si erreur autre, le script remonte + haut (+haut parent : exception)
-//			echo $e->getMessage();
-//			//ici, on peut générer des logs avec les méthodes de $e
-//		}
-//		$rubrique = $model->toArray();
-//		if($id == 0) $id_rubrique = $this->DB->insertRubrique($rubrique);
-//		else $id_rubrique = $this->DB->updateRubrique($rubrique);
-//		return $id_rubrique;
-//	}
-//
-//	public function delRubrique($id)
-//	{
-//		$this->DB->deleteRubrique($id);
-//	}
 
     public function callDocumentModel($datas)
     {
@@ -92,21 +47,4 @@ class documentController extends Controller
         return $dataArray;
     }
 
-//	public function callRubriqueModel($datas)
-//	{
-//		$dataArray = [];
-//		foreach ($datas as $data){
-//			$dataArray[] = new rubriqueModel($data);
-//		}
-//		return $dataArray;
-//	}
-//
-//	public function callUniversModel($datas)
-//	{
-//		$dataArray = [];
-//		foreach ($datas as $data){
-//			$dataArray[] = new universModel($data);
-//		}
-//		return $dataArray;
-//	}
 }

@@ -18,6 +18,7 @@ class menuModel
     public $subcat_id;
     public $subcat_name;
     public $subcat_slug;
+    public $menu_url;
 
     public function __construct($params = [])
     {
@@ -131,8 +132,8 @@ class menuModel
     }
 
     /**
-     * @return mixed
-     */
+ * @return mixed
+ */
     public function getSubcat_Slug()
     {
         return $this->subcat_slug;
@@ -144,6 +145,22 @@ class menuModel
     public function setSubcat_Slug($subcat_slug)
     {
         $this->subcat_slug = $subcat_slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMenu_url()
+    {
+        return $this->menu_url;
+    }
+
+    /**
+     * @param mixed $subcat_slug
+     */
+    public function setMenu_url($menu_url)
+    {
+        $this->menu_url = $menu_url;
     }
 
 }

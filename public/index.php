@@ -28,12 +28,12 @@ $app->get('/categories', function (){
     $controller->getAllCategories();
 });
 
-$app->get('/new/category(/:id)', function ($id = null) use ($app){
+$app->get('/new/category(-:id)', function ($id = null) use ($app){
     $controller = new Controller\categoryController();
     $controller->formCategory($id);
 });
 
-$app->post('/new/category/post(/:id)', function ($id = null) use ($app){
+$app->post('/new/category/post(-:id)', function ($id = null) use ($app){
     $req = $app->request(); //get the POST datas
     $controller = new Controller\categoryController();
     //$req->post() -> send the datas in an array
@@ -41,74 +41,21 @@ $app->post('/new/category/post(/:id)', function ($id = null) use ($app){
     if($result > 0) $app->redirect(FO_URL.'categories');
 });
 
-$app->get('/delete/category/:id', function($id) use($app){
+$app->get('/delete/category-:id', function($id) use($app){
 	$controller = new Controller\categoryController();
 	$controller->deleteCategory($id);
 	$app->redirect(FO_URL.'categories');
 });
 
-//$app->post('/new/univers/post(/:id)', function ($id=null) use($app){
-//	$req = $app->request(); //récupère les données envoyées en POST
-//	//$req->post() renvoie les données sous forme de tableau
-//	$controller = new Controller\universController();
-//	$result = $controller->newUnivers($req->post(), $id);
-//	if($result > 0) $app->redirect(FO_URL.'univers');
-//});
+//DOCUMENTS
+$app->get('/documents', function (){
+    $controller = new Controller\documentController();
+    $controller->getAllDocuments();
+});
 
-////UNIVERS
-//$app->get('/univers', function(){
-//	$controller = new Controller\universController();
-//	$controller->getAllUnivers();
-//});
-//
-//$app->get('/new/univers(/:id)', function($id = null) use($app){
-//	$controller = new Controller\universController();
-//	$controller->getUnivers($id);
-//});
-//
-//$app->post('/new/univers/post(/:id)', function ($id=null) use($app){
-//	$req = $app->request(); //récupère les données envoyées en POST
-//	//$req->post() renvoie les données sous forme de tableau
-//	$controller = new Controller\universController();
-//	$result = $controller->newUnivers($req->post(), $id);
-//	if($result > 0) $app->redirect(FO_URL.'univers');
-//});
-//
-//$app->get('/delete/univers/:id', function($id) use($app){
-//	$controller = new Controller\universController();
-//	$controller->delUnivers($id);
-//	$app->redirect(FO_URL.'univers');
-//});
-//
-////RUBRIQUES
-//$app->get('/rubriques', function(){
-//	$controller = new Controller\rubriqueController();
-//	$controller->getAllRubriques();
-//});
-//
-//$app->get('/new/rubrique(/:id)', function($id = null) use($app){
-//    $controller = new Controller\rubriqueController();
-//    $controller->getRubrique($id);
-//});
-//
-//$app->post('/new/rubrique/post(/:id)', function ($id = null) use($app){
-//	$req = $app->request(); //récupère les données envoyées en POST
-//	//$req->post() renvoie les données sous forme de tableau
-//	$controller = new Controller\rubriqueController();
-//	$result = $controller->newRubrique($req->post(), $id);
-//	if($result > 0) $app->redirect(FO_URL.'rubriques');
-//});
-//
-//$app->get('/delete/rubrique/:id', function($id) use($app){
-//	$controller = new Controller\rubriqueController();
-//	$controller->delRubrique($id);
-//	$app->redirect(FO_URL.'rubriques');
-//});
-//
-////DOCUMENTS
-//$app->get('/univers-:id', function($id) use($app){
-//    $controller = new Controller\documentController();
-//    $controller->getAllDocuments($id);
-//});
+$app->get('/:cat_name-:cat_id/:subcat_name-:subcat_id', function ($cat_id, $subcat_id) use($app){
+    $controller = new Controller\documentController();
+    $controller->getAllDocuments();
+});
 
 $app->run();

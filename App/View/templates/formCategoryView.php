@@ -10,7 +10,7 @@
     }
     if($formCategoryData){
     ?>
-    <form action="<?= FO_URL ?>new/category/post<?= $category ? '/' . $category->getId() : '' ?>"
+    <form action="<?= FO_URL ?>new/category/post<?= $category ? '-' . $category->getId() : '' ?>"
           method="post">
         <div class="row">
             <div class="medium-4 columns">

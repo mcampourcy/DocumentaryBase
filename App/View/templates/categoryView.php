@@ -29,8 +29,8 @@
                 <td><?= $category->getName() ?></td>
                 <td><?=icon($category->getIcon())?></td>
                 <td width="250">
-                    <a href="<?=FO_URL?>new/category/<?=$category->getId()?>" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
-                    <a href="<?=FO_URL?>delete/category/<?=$category->getId()?>" class="btn btn-danger delete">Supprimer</a>
+                    <a href="<?=FO_URL?>new/category-<?=$category->getId()?>" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
+                    <a href="<?=FO_URL?>delete/category-<?=$category->getId()?>" class="btn btn-danger delete">Supprimer</a>
                 </td>
             </tr>
             <?php

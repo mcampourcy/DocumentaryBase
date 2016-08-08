@@ -3,8 +3,6 @@
 namespace App\Controller;
 use App\DB\categoryDAO;
 use App\Model\menuModel;
-use App\Model\rubriqueModel;
-use App\Model\universModel;
 
 /**
  * Class menucontroller
@@ -40,20 +38,8 @@ class menuController extends Controller
         return $data_array;
     }
 
-	public function menuUniversModel($datas){
-		$dataArray = [];
-		foreach ($datas as $data){
-			$dataArray[] = new universModel($data);
-		}
-		return $dataArray;
-	}
-
-	public function menuRubriqueModel($datas){
-		$dataArray = [];
-		foreach ($datas as $data){
-			$dataArray[] = new rubriqueModel($data);
-		}
-		return $dataArray;
-	}
+    public function Test($data){
+        return 'this is'.$data;
+    }
 
 }

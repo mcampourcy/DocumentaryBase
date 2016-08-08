@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\DB\categoryDAO;
+use App\Model\menuModel;
 use App\Model\rubriqueModel;
 use App\Model\universModel;
 
@@ -26,24 +27,18 @@ class menuController extends Controller
 	public function buildMenu()
 	{
 		$this->DB = new categoryDAO();
-		$dataUnivers = $this->DB->getAllUnivers();
-		try {
-			$univers = $this->menuUniversModel($dataUnivers);
-		} catch(\InvalidArgumentException $e) {
-			echo $e->getMessage();
-		}
-		foreach($univers as $Univers){
-			$dataRubriques = $this->DB->getAllRubriques($Univers->id);
-			try {
-				$model = $this->menuRubriqueModel($dataRubriques);
-			} catch(\InvalidArgumentException $e) {
-				echo $e->getMessage();
-			}
-			$Univers->rubrique = $model;
-		}
-		$datas = ['menuData' => $univers];
-		return $datas['menuData'];
+        $datas = $this->DB->getAllForMenu();
+        $model = $this->callCategoryModel($datas);
+        return $model;
 	}
+
+    public function callCategoryModel($datas){
+        $data_array = [];
+        foreach ($datas as $data){
+            $data_array[] = new menuModel($data);
+        }
+        return $data_array;
+    }
 
 	public function menuUniversModel($datas){
 		$dataArray = [];

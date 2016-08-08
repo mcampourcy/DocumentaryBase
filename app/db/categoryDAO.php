@@ -60,6 +60,24 @@ class categoryDAO extends DAO
         $this->query($query, $datas);
     }
 
+    public function getAllForMenu(){
+        $query = 'SELECT 
+        cat.id AS cat_id,
+        cat.name AS cat_name,
+        cat.icon AS cat_icon,
+        cat.slug AS cat_slug,
+        GROUP_CONCAT(subcat.id) AS subcat_id,
+        GROUP_CONCAT(subcat.name) AS subcat_name,
+        GROUP_CONCAT(subcat.slug) AS subcat_slug
+        FROM docs_categories AS cat
+        LEFT OUTER JOIN docs_categories AS subcat
+        ON subcat.id_parent = cat.id
+        WHERE cat.id_parent IS NULL
+        GROUP BY cat.id
+        ORDER BY cat_id';
+        return $this->query($query);
+    }
+
     public function toArray($datas) {
         $array = [];
         foreach ($datas as $k => $v){

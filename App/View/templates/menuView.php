@@ -4,23 +4,31 @@ $p = isset($_GET['url']) ? $_GET['url'] : '';
 <section class="sidebar">
 	<ul class="vertical menu" data-accordion-menu>
 		<li class="<?=(empty($p)) ? 'active' : ''?>"><a href="<?=FO_URL?>">Accueil</a></li>
-		<?php
-		foreach($menu as $Univers){
+        <?php
+		foreach($menu as $category){
 			?>
 			<li>
-				<a href=""><?=icon($Univers->getIcon()).$Univers->getNom()?></a>
+				<a href=""><?=icon($category->getCat_Icon()).$category->getCat_Name()?></a>
 				<?php
-				if($Univers->rubrique){
-					foreach($Univers->rubrique as $Rubrique){
-						?>
-						<ul class="menu vertical nested">
-							<li>
-								<a href=""><?=$Rubrique->getNom()?></a>
-							</li>
-						</ul>
-						<?php
-					}//endfor
-				}//endif
+                $subcat_id = explode(',', $category->getSubcat_Id());
+                $subcat_name = explode(',', $category->getSubcat_Name());
+                $subcat_slug = explode(',', $category->getSubcat_Slug());
+                $array = [];
+                for($ii = 0; $ii < count($subcat_id); $ii++){
+                    $array['subcat_id'] = $subcat_id[$ii];
+                    $array['subcat_name'] = $subcat_name[$ii];
+                    $array['subcat_slug'] = $subcat_slug[$ii];
+                }
+                foreach ($array as $a){
+                    var_dump($a);
+                    ?>
+                    <ul class="menu vertical nested">
+                        <li>
+                            <a href=""></a>
+                        </li>
+                    </ul>
+                    <?php
+                }
 				?>
 			</li>
 			<?php

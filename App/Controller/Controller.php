@@ -11,13 +11,15 @@ class Controller
 {
 	public $name;
 	public $menu;
+    public $slug;
 
 	/**
 	 * Controller constructor.
 	 * Extract the name of the class Controller to show the view that correspond
 	 * @param $class
 	 */
-	public function __construct($page){
+	public function __construct($page, $slug = null){
+        $this->slug = $slug;
 		if(class_exists($page)){
 			//ReflectionClass -  La classe ReflectionClass rapporte des informations sur une classe.
 			//On récupère toutes les infos sur la class donnée en paramètres
@@ -35,10 +37,13 @@ class Controller
 
 	public function callView($model, $name = null){
 		if($name) $this->name = $name;
+        //on récupère les données du menu
+        $menu = new menuController();
+        $menu_model = $menu->buildMenu();
 		//on instancie la vue
 		$view = new generateView($this->name);
 		//on envoie les données dans la vue
-		$view->render($model);
+        $view->generate($model, $menu_model, $this->slug);
 	}
 
 }

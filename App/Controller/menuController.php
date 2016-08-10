@@ -13,19 +13,21 @@ class menuController extends Controller
 {
 
 	private $DB;
-	public $page;
 	public $filename;
 
-	public function __construct($page = null)
+	public function __construct($name = null)
 	{
-		$this->page = ($page == null) ? __CLASS__ : $page;
-		parent::__construct($this->page);
+        $page = ($name == null) ? __CLASS__ : $name;
+		parent::__construct($page);
 	}
 
-	public function buildMenu()
+	public function buildMenu($cat = null)
 	{
 		$this->DB = new categoryDAO();
         $datas = $this->DB->getAllForMenu();
+        foreach ($datas as $d){
+            $d['select_cat'] = $cat;
+        }
         $model = $this->callCategoryModel($datas);
         return $model;
 	}
@@ -36,10 +38,6 @@ class menuController extends Controller
             $data_array[] = new menuModel($data);
         }
         return $data_array;
-    }
-
-    public function Test($data){
-        return 'this is'.$data;
     }
 
 }

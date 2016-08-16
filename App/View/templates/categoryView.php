@@ -25,15 +25,36 @@
         foreach ($categoryData as $category) {
             ?>
             <tr>
-                <td width="40" class="text-center"><?= $category->getId() ?></td>
-                <td><?= $category->getName() ?></td>
-                <td><?=icon($category->getIcon())?></td>
+                <td width="40" class="text-center"><?= $category->getCat_Id() ?></td>
+                <td><?= $category->getCat_Name() ?></td>
+                <td><?=icon($category->getCat_Icon())?></td>
                 <td width="250">
-                    <a href="<?=FO_URL?>new/category-<?=$category->getId()?>" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
-                    <a href="<?=FO_URL?>delete/category-<?=$category->getId()?>" class="btn btn-danger delete">Supprimer</a>
+                    <a href="<?=FO_URL?>new/category/<?=$category->getCat_Id()?>" class="btn
+                    btn-primary">Modifier</a>&nbsp;&nbsp;
+                    <a href="<?=FO_URL?>delete/category/<?=$category->getCat_Id()?>" class="btn btn-danger
+                    delete">Supprimer</a>
                 </td>
             </tr>
             <?php
+            if($category->getSubcat_Id()){
+                $subcat_id = explode(',', $category->getSubcat_Id());
+                $subcat_name = explode(',', $category->getSubcat_Name());
+                for($ii = 0; $ii < count($subcat_id); $ii++){
+                    ?>
+                    <tr>
+                        <td width="40" class="text-center"><?= $subcat_id[$ii] ?></td>
+                        <td>- <?= $subcat_name[$ii] ?></td>
+                        <td></td>
+                        <td width="250">
+                            <a href="<?=FO_URL?>new/category/<?=$subcat_id[$ii]?>" class="btn
+                    btn-primary">Modifier</a>&nbsp;&nbsp;
+                            <a href="<?=FO_URL?>delete/category/<?=$subcat_id[$ii]?>" class="btn btn-danger
+                    delete">Supprimer</a>
+                        </td>
+                    </tr>
+                    <?php
+                }//endfor
+            }//endif
         }//endfor
         ?>
         </tbody>

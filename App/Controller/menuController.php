@@ -24,7 +24,7 @@ class menuController extends Controller
 	public function buildMenu($cat = null)
 	{
 		$this->DB = new categoryDAO();
-        $datas = $this->DB->getAllForMenu();
+        $datas = $this->DB->getAllCategories();
         foreach ($datas as $d){
             $d['select_cat'] = $cat;
         }

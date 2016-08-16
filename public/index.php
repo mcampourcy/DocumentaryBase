@@ -25,12 +25,12 @@ $app->get('/categories', function ($slug = 'categories'){
     $controller->getAllCategories();
 });
 
-$app->get('/new/category(-:id)', function ($id = null, $slug = 'categories'){
+$app->get('/new/category(/:id)', function ($id = null, $slug = 'categories'){
     $controller = new Controller\categoryController(null, $slug);
     $controller->formCategory($id);
 });
 
-$app->post('/new/category/post(-:id)', function ($id = null, $slug = 'categories') use ($app){
+$app->post('/new/category/post(/:id)', function ($id = null, $slug = 'categories') use ($app){
     $req = $app->request(); //get the POST datas
     $controller = new Controller\categoryController(null, $slug);
     //$req->post() -> send the datas in an array
@@ -38,7 +38,7 @@ $app->post('/new/category/post(-:id)', function ($id = null, $slug = 'categories
     if($result > 0) $app->redirect(FO_URL.'categories');
 });
 
-$app->get('/delete/category-:id', function($id) use($app){
+$app->get('/delete/category/:id', function($id) use($app){
 	$controller = new Controller\categoryController();
 	$controller->deleteCategory($id);
 	$app->redirect(FO_URL.'categories');
@@ -48,6 +48,11 @@ $app->get('/delete/category-:id', function($id) use($app){
 $app->get('/documents', function ($slug = 'documents'){
     $controller = new Controller\documentController(null, $slug);
     $controller->getAllDocuments();
+});
+
+$app->get('(/:cat_id)(/:cat_name)(/:subcat_id)(/:subcat_name)/new/document(/doc_id)', function ($cat_id = null, $cat_name = null, $subcat_id = null, $subcat_name = null, $doc_id = null){
+    $controller = new Controller\documentController();
+    $controller->formDocument($subcat_id, $doc_id);
 });
 
 $app->get('(/:cat_id)(/:cat_name)(/:subcat_id)(/:subcat_name)', function ($cat_id = null, $cat_name = null, $subcat_id = null, $subcat_name = null){

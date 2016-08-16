@@ -14,9 +14,9 @@ class homeController extends Controller
 
 	private $DB;
 
-	public function __construct($page = null){
+	public function __construct($page = null, $slug = null){
 		$page = ($page == null) ? __CLASS__ : $page;
-		parent::__construct($page);
+		parent::__construct($page, $slug);
 		//on instancie l'accès à la base en créant un nouvel objet de connexion
 		$this->DB = new homeDAO();
 	}

@@ -4,22 +4,20 @@
 </div>
 <div class="row column">
     <?php
-    $category = '';
-    if(isset($formCategoryData)){
-        foreach($formCategoryData as $cat) {
-            $test = ($cat->getSelect_cat()) ? $cat : '';
-            if($test != '') $category = $test;
+    $document = '';
+    if(isset($formDocumentData)){
+        foreach ($formDocumentData as $doc){
+            $document = $doc;
         }
     }
-    $id_parent = $category ? $category->getCat_Id() : '';
     ?>
-    <form action="<?= FO_URL ?>new/category/post<?= $category ? '/' . $category->getCat_Id() : '' ?>"
+    <form action="<?= FO_URL ?>new/category/post<?= $category ? '/' . $category->getId() : '' ?>"
           method="post">
         <div class="row">
             <div class="medium-4 columns">
                 <label for="nom">Nom
                     <input type="text" placeholder="Nom de la catégorie" id="name" name="name"
-                           value="<?= $category ? $category->getCat_Name() : '' ?>">
+                           value="<?= $category ? $category->getName() : '' ?>">
                 </label>
             </div>
             <div class="medium-4 columns">
@@ -27,14 +25,17 @@
                 <select name="id_parent" id="id_parent">
                     <option value=""></option>
                     <?php
-                    if(isset($formCategoryData)){
-                        foreach ($formCategoryData as $cat_list) {
+                    foreach ($formCategoryData as $cat_list) {
+                        if($cat_list->getSelect_cat() === 0) {
                             ?>
-                            <option value="<?= $cat_list->getCat_Id() ?>" <?=($id_parent === $cat_list->getCat_id()) ?
-                                'selected' : ''?>><?= $cat_list->getCat_Name() ?></option>
+                            <option value="<?= $cat_list->getId() ?>" <?= ($parent_cat == $cat_list->getId()) ? 'selected' : '' ?>><?= $cat_list->getName() ?></option>
                             <?php
-                        }//endfor
-                    }//endif
+                        } else if ($cat_list->select_cat === null) {
+                            ?>
+                            <option value="<?= $cat_list->getId() ?>"><?= $cat_list->getName() ?></option>
+                            <?php
+                        }//endif
+                    }//endfor
                     ?>
                 </select>
                 </label>
@@ -44,14 +45,14 @@
             <div class="medium-4 columns">
                 <label for="icon">Icône
                     <input type="text" placeholder="Icône" id="icon" name="icon"
-                           value="<?= $category ? $category->getCat_Icon() : '' ?>">
+                           value="<?= $category ? $category->getIcon() : '' ?>">
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="medium-8 columns">
                 <input type="hidden" id="slug" name="slug"
-                       value="<?= $category ? $category->getCat_Slug() : '' ?>">
+                       value="<?= $category ? $category->getSlug() : '' ?>">
                 <p>
                     <button type="submit" class="btn btn-default">Envoyer</button>
                 </p>

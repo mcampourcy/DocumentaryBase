@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Model;
-use App\Functions;
 
 /**
  * Class categoryModel
@@ -10,18 +9,18 @@ use App\Functions;
 
 class categoryModel
 {
-
-    public $id;
-    public $name;
-    public $icon;
-    public $slug;
-    public $id_parent;
+    public $cat_id;
+    public $cat_name;
+    public $cat_icon;
+    public $cat_slug;
+    public $subcat_id;
+    public $subcat_name;
+    public $subcat_slug;
     public $select_cat;
 
 
     public function __construct($params = [])
     {
-        $this->id = 0;
         $this->hydrate($params);
     }
 
@@ -35,116 +34,121 @@ class categoryModel
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getId()
+    public function getCat_Id()
     {
-        return $this->id;
+        return $this->cat_id;
     }
 
     /**
-     * @param int $id
+     * @param mixed $cat_id
      */
-    public function setId($id)
+    public function setCat_Id($cat_id)
     {
-        if((is_string($id)) || ($id = null)) {
-            $this->id = $id;
-        } else {
-            throw new \InvalidArgumentException("L'id doit etre un nombre");
-        }
+        $this->cat_id = $cat_id;
     }
 
     /**
      * @return mixed
      */
-    public function getName()
+    public function getCat_Name()
     {
-        return $this->name;
+        return $this->cat_name;
     }
 
     /**
-     * @param mixed $nom
+     * @param mixed $cat_name
      */
-    public function setName($name)
+    public function setCat_Name($cat_name)
     {
-        if(is_string($name)) {
-            if(strlen($name) < 150) {
-                $this->name = $name;
-            } else {
-//				//renvoie une erreur (ici erreur argument invalide)
-//				//on peut faire ses propre classes d'erreur-> il suffit qu'elle extend exception
-                throw new \InvalidArgumentException("Le titre doit être inférieur à 150 caractères");
-            }
-        } else {
-            throw new \InvalidArgumentException("Le titre doit etre une chaine de caractères");
-        }
+        $this->cat_name = $cat_name;
     }
 
     /**
      * @return mixed
      */
-    public function getIcon()
+    public function getCat_Icon()
     {
-        return $this->icon;
+        return $this->cat_icon;
     }
 
     /**
-     * @param mixed $icon
+     * @param mixed $cat_icon
      */
-    public function setIcon($icon)
+    public function setCat_Icon($cat_icon)
     {
-        if((is_string($icon)) || (empty($icon))) {
-            $this->icon = $icon;
-        } else {
-            throw new \InvalidArgumentException("L'icone doit etre un nombre");
-        }
-    }
-
-	/**
-	 * @return int
-	 */
-	public function getSlug()
-	{
-		return $this->slug;
-	}
-
-	/**
-	 * @param int $id
-	 */
-	public function setSlug($slug)
-	{
-		if((is_string($slug)) || (empty($slug))) {
-			$this->slug = $slug;
-		} else {
-			throw new \InvalidArgumentException("Le slug doit etre un nombre");
-		}
-	}
-
-    /**
-     * @return mixed
-     */
-    public function getId_Parent()
-    {
-        return $this->id_parent;
-    }
-
-    /**
-     * @param mixed $id_parent
-     */
-    public function setId_Parent($id_parent)
-    {
-        if((is_string($id_parent)) || ($id_parent === null)) {
-            $this->id_parent = $id_parent;
-        } else {
-            throw new \InvalidArgumentException("L'id_parent doit etre un nombre");
-        }
-        $this->id_parent = $id_parent;
+        $this->cat_icon = $cat_icon;
     }
 
     /**
      * @return mixed
      */
-    public function getSelect_cat()
+    public function getCat_Slug()
+    {
+        return $this->cat_slug;
+    }
+
+    /**
+     * @param mixed $cat_slug
+     */
+    public function setCat_Slug($cat_slug)
+    {
+        $this->cat_slug = $cat_slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubcat_Id()
+    {
+        return $this->subcat_id;
+    }
+
+    /**
+     * @param mixed $subcat_id
+     */
+    public function setSubcat_Id($subcat_id)
+    {
+        $this->subcat_id = $subcat_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubcat_Name()
+    {
+        return $this->subcat_name;
+    }
+
+    /**
+     * @param mixed $subcat_name
+     */
+    public function setSubcat_Name($subcat_name)
+    {
+        $this->subcat_name = $subcat_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubcat_Slug()
+    {
+        return $this->subcat_slug;
+    }
+
+    /**
+     * @param mixed $subcat_slug
+     */
+    public function setSubcat_Slug($subcat_slug)
+    {
+        $this->subcat_slug = $subcat_slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSelect_Cat()
     {
         return $this->select_cat;
     }
@@ -152,14 +156,31 @@ class categoryModel
     /**
      * @param mixed $select_cat
      */
-    public function setSelect_cat($select_cat)
+    public function setSelect_Cat($select_cat)
     {
-        if((is_string($select_cat))) {
-            $this->select_cat = $select_cat;
-        } else {
-            throw new \InvalidArgumentException("Select_cat doit être un chiffre");
-        }
         $this->select_cat = $select_cat;
     }
+
+
+
+//    /**
+//     * @return int
+//     */
+//    public function getId()
+//    {
+//        return $this->id;
+//    }
+//
+//    /**
+//     * @param int $id
+//     */
+//    public function setId($id)
+//    {
+//        if((is_string($id)) || ($id = null)) {
+//            $this->id = $id;
+//        } else {
+//            throw new \InvalidArgumentException("L'id doit etre un nombre");
+//        }
+//    }
 
 }

@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Controller;
-include 'functions.php';
+use App\DB\categoryDAO;
 use App\DB\documentDAO;
-use App\Functions;
 use App\Model\documentModel;
-use App\Model\rubriqueModel;
-use App\Model\universModel;
 
 /**
  * Class rubriqueController
@@ -17,14 +14,15 @@ class documentController extends Controller
 {
 
 	private $DB;
+    private $DB_cat;
 	public $id_univers;
-	public $page;
 
-	public function __construct($page = null)
+	public function __construct($name = null, $slug = null)
 	{
-		$this->page = ($page == null) ? __CLASS__ : $page;
-		parent::__construct($this->page);
+        $page = ($name == null) ? __CLASS__ : $name;
+		parent::__construct($page, $slug);
 		$this->DB = new documentDAO();
+        $this->DB_cat = new categoryDAO();
 	}
 
 	public function getAllDocuments()
@@ -37,6 +35,17 @@ class documentController extends Controller
 		}
 		$this->callView($model, 'documents');
 	}
+
+	public function formDocument($subcat_id = null, $doc_id = null){
+        $datas = [];
+        if($doc_id) $datas = $this->DB->getOneDocument($doc_id);
+        try {
+            $model = $this->callDocumentModel($datas);
+        } catch(\InvalidArgumentException $e) {
+            echo $e->getMessage();
+        }
+        $this->callView($model, 'formDocument');
+    }
 
     public function callDocumentModel($datas)
     {

@@ -17,4 +17,10 @@ class documentDAO extends DAO
         return $this->query($query);
     }
 
+    public function getOneDocument($id){
+        $query = 'SELECT id, titre FROM docs_documents WHERE id = :id';
+        $datas = array('id' => $id);
+        return $this->query($query, $datas);
+    }
+
 }

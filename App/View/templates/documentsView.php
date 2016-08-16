@@ -27,7 +27,7 @@
             <tr>
                 <td width="40" class="text-center"><?= $document->getId() ?></td>
                 <td><?= $document->getTitre() ?></td>
-                <td><?= $document->getIdUnivers() ?></td>
+                <td></td>
                 <td width="250">
                     <a href="<?=FO_URL?>new/document/<?=$document->getId()?>" class="btn btn-primary">Modifier</a>&nbsp;&nbsp;
                     <a href="<?=FO_URL?>delete/document/<?=$document->getId()?>" class="btn btn-danger delete">Supprimer</a>

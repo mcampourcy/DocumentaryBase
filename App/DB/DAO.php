@@ -62,4 +62,13 @@ class DAO
 //        PDOStatement::fetchAll — Retourne un tableau contenant toutes les lignes du jeu d'enregistrements
 //        PDO::FETCH_ASSOC: retourne un tableau indexé par le nom de la colonne comme retourné dans le jeu de résultats
     }
+
+    public function toArray($datas) {
+        $array = [];
+        foreach ($datas as $k => $v){
+            if($v === '') $v = NULL;
+            $array[$k] = $v;
+        }
+        return $array;
+    }
 }

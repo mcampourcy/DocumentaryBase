@@ -12,8 +12,6 @@ class documentModel
 
     private $id;
     public $titre;
-    public $id_univers;
-    public $id_rubrique;
 
     public function __construct($params = [])
     {
@@ -61,47 +59,4 @@ class documentModel
     {
         $this->titre = $titre;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getIdUnivers()
-    {
-        return $this->id_univers;
-    }
-
-    /**
-     * @param mixed $id_univers
-     */
-    public function setIdUnivers($id_univers)
-    {
-        $this->id_univers = $id_univers;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdRubrique()
-    {
-        return $this->id_rubrique;
-    }
-
-    /**
-     * @param mixed $id_rubrique
-     */
-    public function setIdRubrique($id_rubrique)
-    {
-        $this->id_rubrique = $id_rubrique;
-    }
-
-
-
-	public function toArray() {
-		return array(
-			'id' => $this->id,
-			'nom' => $this->nom,
-			'id_univers' => $this->id_univers,
-			'slug' => $this->slug
-		);
-	}
 }

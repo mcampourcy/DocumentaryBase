@@ -156,7 +156,7 @@ class menuModel
     }
 
     /**
-     * @param mixed $subcat_slug
+     * @param mixed $menu_url
      */
     public function setMenu_url($menu_url)
     {

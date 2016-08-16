@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\DB\categoryDAO;
 include 'functions.php';
 use App\Functions;
+use App\Model\categoryFormModel;
 use App\Model\categoryModel;
 
 /**
@@ -19,9 +20,9 @@ class categoryController extends Controller
      * categoryController constructor.
      * @param null $name
      */
-	public function __construct($name = null){
+	public function __construct($name = null, $slug = null){
 		$page = ($name == null) ? __CLASS__ : $name;
-		parent::__construct($page);
+		parent::__construct($page, $slug);
 		$this->DB = new categoryDAO();
 	}
 
@@ -45,7 +46,7 @@ class categoryController extends Controller
         $data_categories = $this->DB->getAllCategories();
         $categories = $this->callCategoryModel($data_categories);
         foreach ($categories as $cat){
-            if($cat->id === $id){
+            if($cat->cat_id === $id){
                 $cat->select_cat = 1;
             } else {
                 $cat->select_cat = 0;
@@ -60,7 +61,7 @@ class categoryController extends Controller
         //on appelle le model avec le tableau de datas posté -> les vérifications se font dans l'hydrateur -> setter
         //renvoie un tableau d'objet
         try { //essaie de créer le model
-            $model = new categoryModel($datas);
+            $model = new categoryFormModel($datas);
         } catch(\InvalidArgumentException $e) { //si erreur, on l'affiche (cf throw dans model)
             //ici, il catch l'invalid argument exception -> si erreur autre, le script remonte + haut (+haut parent : exception)
             echo $e->getMessage();
@@ -78,7 +79,13 @@ class categoryController extends Controller
     public function callCategoryModel($datas){
         $data_array = [];
         foreach ($datas as $data){
-            $data_array[] = new categoryModel($data);
+            try { //essaie de créer le model
+                $data_array[] = new categoryModel($data);
+            } catch(\InvalidArgumentException $e) { //si erreur, on l'affiche (cf throw dans model)
+                //ici, il catch l'invalid argument exception -> si erreur autre, le script remonte + haut (+haut parent : exception)
+                echo $e->getMessage();
+                //ici, on peut générer des logs avec les méthodes de $e
+            }
         }
         return $data_array;
     }

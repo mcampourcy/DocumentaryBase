@@ -1,0 +1,5 @@
+<phpunit bootstrap="bootstrapPhpUnit.php" colors="true">
+    <testsuite name="zeprojectTests" >
+        <directory>./tests</directory>
+    </testsuite>
+</phpunit>

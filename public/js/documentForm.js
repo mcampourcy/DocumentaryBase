@@ -19,7 +19,6 @@ $(document).ready(function () {
         $('.images_liees').hide();
         $('.images_liees').empty();
         $('#include_media img.selected').each(function(k,v) {
-            console.log($(this));
             $('.images_liees').append('<div class="bloc-img"><img src="' + $(this).attr('src') + '" alt="" class="img-thumbnail img-responsive img-liee" id="' + $(this).attr('id') + '"></div>');
         });//endeach
         $('.images_liees').show();

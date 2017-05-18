@@ -22,7 +22,7 @@ $title = $Document->getId() ? "Éditer le document" : "Créer un document";
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group select_cat">
-                        <label for="cat_id" class="control-label">Catégorie</label>
+                        <label for="cat_id" class="control-label">Catégorie *</label>
                         <select name="cat_id" id="cat_id" class="form-control" required="required">
                             <option value=""></option>
                             <?php
@@ -42,7 +42,7 @@ $title = $Document->getId() ? "Éditer le document" : "Créer un document";
                 </div>
                 <div class="col-md-6">
                     <div class="form-group select_subcat">
-                        <label for="subcat_id" class="control-label">Sous-catégorie</label>
+                        <label for="subcat_id" class="control-label">Sous-catégorie *</label>
                         <select name="subcat_id" id="subcat_id" class="form-control" required="required">
                             <option value=""></option>
                             <?php
@@ -68,7 +68,7 @@ $title = $Document->getId() ? "Éditer le document" : "Créer un document";
             </div>
 
             <div class="form-group">
-                <label for="title" class="control-label">Titre</label>
+                <label for="title" class="control-label">Titre *</label>
                 <input type="text" class="form-control"placeholder="Titre" id="title" name="title" value="<?=$Document->getTitle()?>" required="required">
             </div>
             <div class="form-group">
@@ -76,7 +76,7 @@ $title = $Document->getId() ? "Éditer le document" : "Créer un document";
                 <input type="text" class="form-control"placeholder="Sous-titre" id="subtitle" name="subtitle" value="<?=$Document->getSubtitle()?>">
             </div>
             <div class="form-group">
-                <label for="text1">Texte 1</label>
+                <label for="text1">Texte 1 *</label>
                 <textarea class="form-control summernote" type="text" name="text1" id="text1" rows="10" value="" required><?=$Document->getText1()?></textarea>
             </div>
             <div class="form-group">
